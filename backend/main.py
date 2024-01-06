@@ -1,10 +1,16 @@
 from typing import Union
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+# from queries.users import fetch_all_users
+from controllers.users import router as users_router
 
 origins = ['https://localhost:3000']
 
 app = FastAPI()
+
+# from database import (
+#     fetch_one_bank_account
+# )
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,15 +20,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(users_router, prefix=users)
+
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+def home():
+    return {"message": "Mr. MICO Backend"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
-
+# @app.get('/api/bank_accounts', response_model=Bank_Accounts)
+# async def get_bank_accounts():
+#     response = await fetch_one_bank_account()
+#     if response:
+#         return response
+#     raise HTTPException(404, f'There is no bank account')
 
 if __name__ == "__main__":
     uvicorn.run(
