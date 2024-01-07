@@ -43,14 +43,6 @@ class User(Base):
     username = Column(String(50), unique=True)
     
 
-class Post(Base):
-    __tablename__ = 'posts'
-    
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String(50))
-    content = Column(String(100))
-    user_id = Column(Integer)
-    
 class BankAccount(Base):
     __tablename__ = 'bank_accounts'
     
@@ -58,3 +50,22 @@ class BankAccount(Base):
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
+    
+
+class Investment(Base):
+    __tablename__ = 'investments'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(50))
+    type = Column(String(50))
+    amount = Column(Float)
+    
+
+class Property(Base):
+    __tablename__ = 'properties'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(50))
+    type = Column(String(50))
+    amount = Column(Float)
+    
