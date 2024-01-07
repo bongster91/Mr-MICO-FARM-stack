@@ -22,27 +22,22 @@ from sqlalchemy.orm import relationship
 #     # Establish a relationship with the Portfolio model
 #     portfolio = relationship("Portfolio", back_populates="users")
 
-
-# class Bank_Account(Base):
-#     __tablename__ = 'bank_accounts'
-    
-#     bank_account_id = Column(Integer, primary_key=True, autoincrement=True, index=True)
-#     name = Column(String(50), nullable=False)
-#     type = Column(String(50), nullable=False)
-#     amount = Column(Float, nullable=False)
-#     assets_id = Column(Integer, ForeignKey('assets.assets_id'))
-#     assets = relationship('Assets')
-
-# from sqlalchemy import Boolean, Column, Integer, String
-# from database import Base
-
 class User(Base):
     __tablename__ = 'users'
     
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String(50), unique=True)
     
-
+    
+# class Asset(Base):
+#     __tablename__ = 'assets'
+    
+#     id = Column(Integer, primary_key=True, index=True)
+#     bank_accounts = relationship('BankAccount', back_populates='asset')
+#     investments = relationship('Investment', back_populates='asset')
+#     properties = relationship('Property', back_populates='asset')
+    
+    
 class BankAccount(Base):
     __tablename__ = 'bank_accounts'
     
@@ -50,6 +45,8 @@ class BankAccount(Base):
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
+    # asset_id = Column(Integer, ForeignKey('assets.id'))
+    # asset = relationship('Asset', back_populates='bank_accounts')
     
 
 class Investment(Base):
@@ -59,6 +56,8 @@ class Investment(Base):
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
+    # asset_id = Column(Integer, ForeignKey('assets.id'))
+    # asset = relationship('Asset', back_populates='investments')
     
 
 class Property(Base):
@@ -68,4 +67,6 @@ class Property(Base):
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
+    # asset_id = Column(Integer, ForeignKey('assets.id'))
+    # asset = relationship('Asset', back_populates='properties')
     
