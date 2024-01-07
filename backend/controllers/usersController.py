@@ -13,11 +13,13 @@ class UserBase(BaseModel):
     username: str
    
    
-@users_router.post('/', status_code=status.HTTP_201_CREATED, tags=['users'])
-async def create_user(user: UserBase, db: db_dependency):
-    db_user = models.User(**user.model_dump())
-    db.add(db_user)
-    db.commit()
+@users_router.get('/', status_code=status.HTTP_200_OK, tags=['users'])
+async def get_all_users(db: db_dependency):
+    users = db.query(models.User).all()
+    if users is None:
+        raise HTTPException(status_code=404, detail='There are no users')
+    return users   
+    
     
 @users_router.get('/{user_id}', status_code=status.HTTP_200_OK, tags=['users'])
 async def read_user(user_id: int, db: db_dependency):
@@ -26,35 +28,37 @@ async def read_user(user_id: int, db: db_dependency):
         raise Exception
     return user
 
-# @users_router.get('/', response_model=List[dict], status_code=status.HTTP_200_OK)
-# async def get_all_users():
-#     try:
-#         all_users = await fetch_all_users(db_dependency)
-        
-#         if all_users:
-#             return {"Success": True, "all_users": all_users}
-#         else:
-#             raise HTTPException(status_code=400, detail=f'Failed to get all users')
-        
-#     except Exception as e:
-#         raise HTTPException(status_code=400, detail=f'Resources not found: {str(e)}')
+
+@users_router.post('/', status_code=status.HTTP_201_CREATED, tags=['users'])
+async def create_user(user: UserBase, db: db_dependency):
+    db_user = models.User(**user.model_dump())
+    db.add(db_user)
+    db.commit()
+    return f'Created user: {db_user}'
 
 
-# @users_router.get('/{user_id}', response_model=List[dict], status_code=status.HTTP_200_OK)
-# async def get_one_user(user_id, db: db_dependency):
-#     try:
-#         user = db.query(User).filter(User.user_id == user_id).first()
-#         if user is None:
-#             raise HTTPException(status_code=404, detail=f'User not found with id: {user_id}')
-#     except Exception as e:
-#         raise HTTPException(status_code=404, detail=f"Failed to get user: {str(e)}")
+@users_router.put('/{user_id}', status_code=status.HTTP_200_OK, tags=['users'])
+async def update_user(user_id: int, updated_user: UserBase, db: db_dependency):
+    db_user = db.query(models.User).filter(models.User.id == user_id).first()
+    if db_user is None:
+        raise HTTPException(status_code=404, detail='User was not found')
     
-
-# @users_router.post('/', response_model=List[dict] , status_code=status.HTTP_201_CREATED)
-# async def create_user(user, db: db_dependency):
-#     try:
-#         db_user = User(**user.dict())
-#         db.add(db_user)
-#         db.commit()
-#     except Exception as e:
-#         raise HTTPException(status_code=404, detail=f"Failed to create user: {str(e)}")
+    for field, value in updated_user.dict().items():
+        setattr(db_user, field, value)
+        
+    db.commit()
+    db.refresh(db_user)
+    
+    return db_user
+    
+    
+@users_router.delete('/{user_id}', status_code=status.HTTP_200_OK, tags=['users'])
+async def delete_user(user_id: int, db: db_dependency):
+    db_user = db.query(models.User).filter(models.User.id == user_id).first()
+    if db_user is None:
+        raise HTTPException(status_code=404, detail='User was not found')
+    db.delete(db_user)
+    db.commit()
+    return f'Deleted user with id: {user_id}'
+    
+    
