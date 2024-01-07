@@ -5,4 +5,4 @@ sqlalchemy
 pymongo
 motor
 mysql-connector-python
-dotenv
+python-dotenv

@@ -1,16 +1,16 @@
 from typing import Union
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 # from queries.users import fetch_all_users
-from controllers.users import router as users_router
+from controllers.usersController import users_router as users_router
+from database import get_db, engine, SessionLocal
+from sqlalchemy.orm import Session
+from typing import Annotated
+import models
 
 origins = ['https://localhost:3000']
 
 app = FastAPI()
-
-# from database import (
-#     fetch_one_bank_account
-# )
 
 app.add_middleware(
     CORSMiddleware,
@@ -20,12 +20,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(users_router, prefix=users)
+db_dependency = Annotated[Session, Depends(get_db)]
+models.Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def home():
     return {"message": "Mr. MICO Backend"}
 
+app.include_router(users_router, prefix='/users')
 
 # @app.get('/api/bank_accounts', response_model=Bank_Accounts)
 # async def get_bank_accounts():
