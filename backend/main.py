@@ -13,6 +13,7 @@ from controllers.investmentsController import investments_router
 from controllers.propertiesController import properties_router
 from controllers.debtsController import debts_router
 from controllers.billsController import bills_router
+from controllers.loansController import loans_router
 
 origins = ['https://localhost:3000']
 
@@ -48,6 +49,7 @@ app.include_router(investments_router, prefix='/investments')
 app.include_router(properties_router, prefix='/properties')
 app.include_router(debts_router, prefix='/debts')
 app.include_router(bills_router, prefix='/bills')
+app.include_router(loans_router, prefix='/loans')
 
 
 if __name__ == "__main__":
