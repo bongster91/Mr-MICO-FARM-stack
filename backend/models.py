@@ -90,3 +90,54 @@ class Property(Base):
     asset_id = Column(Integer, ForeignKey('assets.id'))
     asset = relationship('Asset', back_populates='properties')
     
+
+class Debt(Base):
+    __tablename__ = 'debts'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    bills = relationship('Bill', back_populates='debt')
+    loans = relationship('Loan', back_populates='debt')
+    credits = relationship('Credit', back_populates='debt')
+    expenses = relationship('Expense', back_populates='debt')
+    
+
+class Bill(Base):
+    __tablename__ = 'bills'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(50))
+    type = Column(String(50))
+    amount = Column(Float)
+    debt_id = Column(Integer, ForeignKey('debts.id'))
+    debt = relationship('Debt', back_populates='bills')
+ 
+class Loan(Base):
+    __tablename__ = 'loans'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(50))
+    type = Column(String(50))
+    amount = Column(Float)
+    debt_id = Column(Integer, ForeignKey('debts.id'))
+    debt = relationship('Debt', back_populates='loans')
+ 
+class Credit(Base):
+    __tablename__ = 'credits'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(50))
+    type = Column(String(50))
+    amount = Column(Float)
+    debt_id = Column(Integer, ForeignKey('debts.id'))
+    debt = relationship('Debt', back_populates='credits')
+ 
+class Expense(Base):
+    __tablename__ = 'expenses'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(50))
+    type = Column(String(50))
+    amount = Column(Float)
+    debt_id = Column(Integer, ForeignKey('debts.id'))
+    debt = relationship('Debt', back_populates='expenses')
+ 
