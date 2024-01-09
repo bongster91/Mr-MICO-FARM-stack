@@ -3,6 +3,7 @@
 # from fastapi.middleware.cors import CORSMiddleware
 # # from queries.users import fetch_all_users
 from controllers.usersController import users_router
+from controllers.assetsController import assets_router
 from controllers.bankAccountsController import bank_accounts_router
 from controllers.investmentsController import investments_router
 from controllers.propertiesController import properties_router
@@ -96,6 +97,7 @@ def home():
 
 
 app.include_router(users_router, prefix='/users')
+app.include_router(assets_router, prefix='/assets')
 app.include_router(bank_accounts_router, prefix='/bank_accounts')
 app.include_router(investments_router, prefix='/investments')
 app.include_router(properties_router, prefix='/properties')

@@ -12,6 +12,7 @@ class InvestmentBase(BaseModel):
     name: str
     type: str
     amount: float
+    asset_id: int
     
 @investments_router.get('/', status_code=status.HTTP_200_OK, tags=['investments'])
 async def get_all_investments(db: db_dependency):
