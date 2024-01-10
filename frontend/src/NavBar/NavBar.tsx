@@ -27,13 +27,15 @@ const NavBar = () => {
                     );
                 })
             }
-            {auth && ( 
-                <UserButton  
-                    handleMenu={handleMenu}
-                    anchorEl={anchorEl}
-                    handleClose={handleClose}
-                /> 
-            )}
+            {
+                auth && ( 
+                    <UserButton  
+                        handleMenu={handleMenu}
+                        anchorEl={anchorEl}
+                        handleClose={handleClose}
+                    /> 
+                )
+            }
         </NavSurface>
     );
 };

@@ -12,11 +12,9 @@ function NavItem({ item }: any) {
     
     return (
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {/* <Link to={redirect}> 
-                {title} */}
-            {/* <Link to='/'> */}
-                Home
-            {/* </Link> */}
+            <Link to={redirect}> 
+                {title}
+            </Link>
         </Typography>
     );
 }
