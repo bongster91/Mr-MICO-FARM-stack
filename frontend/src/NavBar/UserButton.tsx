@@ -1,10 +1,10 @@
 import React from 'react';
-import IconButton from '@mui/material/IconButton';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 import { UserButtonProps } from './types';
+import stringAvatar from '../Helper/StringManipulation';
 
 function UserButton({
     handleMenu,
@@ -14,16 +14,7 @@ function UserButton({
 
     return (
         <div>
-            <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-            >
-                <AccountCircle />
-            </IconButton>
+            <Avatar {...stringAvatar('Mister Meowgi')} onClick={handleMenu} />
             <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}

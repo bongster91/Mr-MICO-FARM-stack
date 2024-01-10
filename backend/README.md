@@ -1,5 +1,0 @@
-- start up environment with `source ./venv/bin/activate`
-- `pip install -r requirements.txt`
-- start server with `uvicorn main:app --reload`
-- open swagger page at `localhost:8000/docs`
-- open strawberry grapqhl gui at `localhost:8000/graphql`

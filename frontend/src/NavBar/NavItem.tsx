@@ -12,7 +12,7 @@ function NavItem({ item }: any) {
     
     return (
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to={redirect}> 
+            <Link to={redirect} style={{ textDecoration: 'none', color: 'black' }}> 
                 {title}
             </Link>
         </Typography>
