@@ -10,7 +10,7 @@ import Debts from './Pages/Debts';
 export const routes = [
     {
         path: '/',
-        element: <Home />,
+        element: <Portfolio />,
         errorElement: <NotFound />
     },
     {
