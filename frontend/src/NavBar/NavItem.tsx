@@ -1,13 +1,23 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 
-function NavItem() {
+import { NavItemProps } from './types';
+
+function NavItem({ item }: any) {
+    const {
+        title,
+        redirect
+    } = item;
+    
     return (
-        <div>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Photos
-            </Typography>
-        </div>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {/* <Link to={redirect}> 
+                {title} */}
+            {/* <Link to='/'> */}
+                Home
+            {/* </Link> */}
+        </Typography>
     );
 }
 

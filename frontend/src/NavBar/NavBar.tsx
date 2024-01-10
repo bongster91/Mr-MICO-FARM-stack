@@ -4,8 +4,9 @@ import NavSurface from './NavSurface';
 import NavMenu from './NavMenu';
 import UserButton from './UserButton';
 import NavItem from './NavItem';
+import { NavItemProps, navItems } from './types';
 
-export default function MenuAppBar() {
+const NavBar = () => {
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -19,8 +20,13 @@ export default function MenuAppBar() {
 
     return (
         <NavSurface>
-            <NavMenu />
-            <NavItem />
+            {
+                navItems.map((item: NavItemProps, index) => {
+                    return (
+                        <NavItem item={item} key={index} />
+                    );
+                })
+            }
             {auth && ( 
                 <UserButton  
                     handleMenu={handleMenu}
@@ -30,4 +36,6 @@ export default function MenuAppBar() {
             )}
         </NavSurface>
     );
-}
+};
+
+export default NavBar;

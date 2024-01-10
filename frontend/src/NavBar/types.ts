@@ -8,3 +8,26 @@ export type UserButtonProps = {
     handleClose: () => void
 }
 
+export type NavItemProps = {
+    title: string,
+    redirect: string
+}
+
+export const navItems: NavItemProps[] = [
+    {
+        "title": "Portfolio",
+        "redirect": '/portfolio'
+    },
+    {
+        "title": "Net Worth",
+        "redirect": '/net_worth'
+    },
+    {
+        'title': 'Assets',
+        'redirect': '/assets'
+    },
+    {
+        'title': 'Debts',
+        "redirect": '/debts'
+    }
+];
