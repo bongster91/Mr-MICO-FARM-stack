@@ -4,7 +4,6 @@
         "es2021": true
     },
     "extends": [
-        "standard-with-typescript",
         "plugin:react/recommended",
         "prettier"
     ],
@@ -18,7 +17,6 @@
     "rules": {
         "block-spacing": "warn",
         "camelcase": "warn",
-        "indent": "warn",
         "linebreak-style": "warn",
         "newline-before-return": "warn",
         "semi": "warn"
