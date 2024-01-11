@@ -40,104 +40,95 @@ class User(Base):
     # portfolio = relationship("Portfolio", back_populates="users")
     
 
-# class Portfolio(Base):
-#     __tablename__ = 'portfolios'
-    
-#     id = Column(Integer, primary_key=True, index=True)
-#     user = relationship('User', back_populates='users')
-#     assets = relationship('Asset', back_populates='assets')
-#     debts = relationship('Debt', back_populates='debts')
-
-
 class Asset(Base):
     __tablename__ = 'assets'
     
-    id = Column(Integer, primary_key=True, index=True)
-    bank_accounts = relationship('BankAccount', back_populates='asset')
-    investments = relationship('Investment', back_populates='asset')
-    properties = relationship('Property', back_populates='asset')
+    assets_id = Column(Integer, primary_key=True, index=True)
+    bank_accounts = relationship('BankAccount', back_populates='assets')
+    investments = relationship('Investment', back_populates='assets')
+    properties = relationship('Property', back_populates='assets')
     
     
 class BankAccount(Base):
     __tablename__ = 'bank_accounts'
     
-    id = Column(Integer, primary_key=True, index=True)
+    bank_accounts_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
-    asset_id = Column(Integer, ForeignKey('assets.id'))
-    asset = relationship('Asset', back_populates='bank_accounts')
+    assets_id = Column(Integer, ForeignKey('assets.assets_id'))
+    assets = relationship('Asset', back_populates='bank_accounts')
     
 
 class Investment(Base):
     __tablename__ = 'investments'
     
-    id = Column(Integer, primary_key=True, index=True)
+    investments_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
-    asset_id = Column(Integer, ForeignKey('assets.id'))
-    asset = relationship('Asset', back_populates='investments')
+    assets_id = Column(Integer, ForeignKey('assets.assets_id'))
+    assets = relationship('Asset', back_populates='investments')
     
 
 class Property(Base):
     __tablename__ = 'properties'
     
-    id = Column(Integer, primary_key=True, index=True)
+    properties_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
-    asset_id = Column(Integer, ForeignKey('assets.id'))
-    asset = relationship('Asset', back_populates='properties')
+    assets_id = Column(Integer, ForeignKey('assets.assets_id'))
+    assets = relationship('Asset', back_populates='properties')
     
 
 class Debt(Base):
     __tablename__ = 'debts'
     
-    id = Column(Integer, primary_key=True, index=True)
-    bills = relationship('Bill', back_populates='debt')
-    loans = relationship('Loan', back_populates='debt')
-    credits = relationship('Credit', back_populates='debt')
-    expenses = relationship('Expense', back_populates='debt')
+    debts_id = Column(Integer, primary_key=True, index=True)
+    bills = relationship('Bill', back_populates='debts')
+    loans = relationship('Loan', back_populates='debts')
+    credits = relationship('Credit', back_populates='debts')
+    expenses = relationship('Expense', back_populates='debts')
     
 
 class Bill(Base):
     __tablename__ = 'bills'
     
-    id = Column(Integer, primary_key=True, index=True)
+    bills_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
-    debt_id = Column(Integer, ForeignKey('debts.id'))
-    debt = relationship('Debt', back_populates='bills')
+    debts_id = Column(Integer, ForeignKey('debts.debts_id'))
+    debts = relationship('Debt', back_populates='bills')
  
 class Loan(Base):
     __tablename__ = 'loans'
     
-    id = Column(Integer, primary_key=True, index=True)
+    loans_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
-    debt_id = Column(Integer, ForeignKey('debts.id'))
-    debt = relationship('Debt', back_populates='loans')
+    debts_id = Column(Integer, ForeignKey('debts.debts_id'))
+    debts = relationship('Debt', back_populates='loans')
  
 class Credit(Base):
     __tablename__ = 'credits'
     
-    id = Column(Integer, primary_key=True, index=True)
+    credits_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
-    debt_id = Column(Integer, ForeignKey('debts.id'))
-    debt = relationship('Debt', back_populates='credits')
+    debts_id = Column(Integer, ForeignKey('debts.debts_id'))
+    debts = relationship('Debt', back_populates='credits')
  
 class Expense(Base):
     __tablename__ = 'expenses'
     
-    id = Column(Integer, primary_key=True, index=True)
+    expenses_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(50))
     type = Column(String(50))
     amount = Column(Float)
-    debt_id = Column(Integer, ForeignKey('debts.id'))
-    debt = relationship('Debt', back_populates='expenses')
+    debts_id = Column(Integer, ForeignKey('debts.debts_id'))
+    debts = relationship('Debt', back_populates='expenses')
  

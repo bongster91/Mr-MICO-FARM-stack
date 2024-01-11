@@ -12,18 +12,12 @@ CREATE TABLE users (
     phone_number VARCHAR(20),
     email VARCHAR(50) UNIQUE,
     password VARCHAR(50),
-    portfolio_id INT,
-    FOREIGN KEY (portfolio_id) REFERENCES portfolios(portfolio_id) ON DELETE CASCADE,
-    admin BOOLEAN DEFAULT false
-);
-
-CREATE TABLE portfolios (
-    portfolio_id INT AUTO_INCREMENT PRIMARY KEY,
+    admin BOOLEAN DEFAULT false,
     assets_id INT,
     FOREIGN KEY (assets_id) REFERENCES assets(assets_id) ON DELETE CASCADE,
     debts_id INT,
     FOREIGN KEY (debts_id) REFERENCES debts(debts_id) ON DELETE CASCADE
-)
+);
 
 CREATE TABLE assets (
     assets_id INT AUTO_INCREMENT PRIMARY KEY,

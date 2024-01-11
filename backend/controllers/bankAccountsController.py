@@ -12,7 +12,7 @@ class BankAccountBase(BaseModel):
     name: str
     type: str
     amount: float
-    asset_id: int
+    assets_id: int
     
 @bank_accounts_router.get('/', status_code=status.HTTP_200_OK, tags=['bank_accounts'])
 async def get_all_bank_accounts(db: db_dependency):

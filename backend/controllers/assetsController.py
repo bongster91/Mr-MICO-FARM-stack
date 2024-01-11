@@ -32,6 +32,18 @@ async def get_all_assets(db: db_dependency):
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
 
+@assets_router.get('/{assets_id}', status_code=status.HTTP_200_OK, tags=['assets'])
+async def get_one_bank_account(assets_id: int, db: db_dependency):
+    asset = db.query(models.Asset).options(
+            joinedload(models.Asset.bank_accounts),
+            joinedload(models.Asset.investments),
+            joinedload(models.Asset.properties)
+        ).get(assets_id)
+    if asset is None:
+        raise HTTPException(status_code=404, detail='Assets was not found')
+    return asset
+
+
 @assets_router.post('/', status_code=status.HTTP_201_CREATED, tags=['assets'])
 async def create_assets(asset: AssetBase, db: db_dependency, data: dict):
     try:
