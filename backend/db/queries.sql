@@ -1,5 +1,11 @@
 SELECT * FROM users;
 
+INSERT INTO users (
+    first_name, last_name, assets_id, debts_id
+) VALUES (
+    'test name', 'test name', 1, 1
+)
+
 SELECT * FROM assets;
 
 SELECT * FROM bank_accounts;

@@ -12,17 +12,17 @@ db_dependency = Annotated[Session, Depends(get_db)]
 class UserBase(BaseModel):
     first_name: str
     last_name: str
-    date_of_birth: str
-    address: str
-    phone_number: str
-    email: str
-    password: str
-    admin: bool
+    # date_of_birth: str
+    # address: str
+    # phone_number: str
+    # email: str
+    # password: str
+    # admin: bool
     assets_id: int
     debts_id: int
    
    
-@users_router.get('/', status_code=status.HTTP_200_OK, tags=['users'])
+@users_router.get('/', response_model=List[UserBase], status_code=status.HTTP_200_OK, tags=['users'])
 async def get_all_users(db: db_dependency):
     users = db.query(models.User).all()
     if users is None:

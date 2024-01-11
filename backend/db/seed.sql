@@ -6,12 +6,6 @@ INSERT INTO users (
     'Mister', 'Meowgi', '2003-01-02', '123 Beans Lane', '111-111-1111', 'catchmice@fields.com', 'treats123', 1, true
 );  
 
-INSERT INTO portfolios (
-    assets_id, debts_id
-) VALUES (
-    1, 1
-);
-
 INSERT INTO assets (
     bank_accounts_id, investments_id, properties_id
 ) VALUES (
