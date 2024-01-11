@@ -34,6 +34,19 @@ async def get_all_debts(db: db_dependency):
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
 
+@debts_router.get('/{debts_id}', status_code=status.HTTP_200_OK, tags=['debts'])
+async def get_one_bank_account(debts_id: int, db: db_dependency):
+    debt = db.query(models.Debt).options(
+            joinedload(models.Debt.bills),
+            joinedload(models.Debt.loans),
+            joinedload(models.Debt.credits),
+            joinedload(models.Debt.expenses)
+        ).get(debts_id)
+    if debt is None:
+        raise HTTPException(status_code=404, detail='Assets was not found')
+    return debt
+
+
 @debts_router.post('/', status_code=status.HTTP_201_CREATED, tags=['debts'])
 async def create_debts(debt: DebtsBase, db: db_dependency, data: dict):
     try:

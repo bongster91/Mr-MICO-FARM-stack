@@ -12,7 +12,7 @@ class ExpnseBase(BaseModel):
     name: str
     type: str
     amount: float
-    debt_id: int
+    debts_id: int
     
 @expenses_router.get('/', status_code=status.HTTP_200_OK, tags=['expenses'])
 async def get_all_expenses(db: db_dependency):

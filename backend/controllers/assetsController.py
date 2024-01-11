@@ -56,21 +56,21 @@ async def create_assets(asset: AssetBase, db: db_dependency, data: dict):
         # Create related BankAccounts
         bank_accounts_data = data.get("bank_accounts", [])
         for bank_account_data in bank_accounts_data:
-            bank_account_data["asset_id"] = asset.id
+            bank_account_data["assets_id"] = asset.id
             bank_account = models.BankAccount(**bank_account_data)
             db.add(bank_account)
 
         # Create related Investments
         investments_data = data.get("investments", [])
         for investment_data in investments_data:
-            investment_data["asset_id"] = asset.id
+            investment_data["assets_id"] = asset.id
             investment = models.Investment(**investment_data)
             db.add(investment)
 
         # Create related Properties
         properties_data = data.get("properties", [])
         for property_data in properties_data:
-            property_data["asset_id"] = asset.id
+            property_data["assets_id"] = asset.id
             asset_property = models.Property(**property_data)
             db.add(asset_property)
 

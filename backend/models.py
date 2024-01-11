@@ -33,11 +33,12 @@ class User(Base):
     # phone_number = Column(String(20))
     # email = Column(String(50), unique=True)
     # password = Column(String(50))
-    # portfolio_id = Column(Integer, ForeignKey("portfolios.portfolio_id", ondelete="CASCADE"))
     # admin = Column(Boolean, default=False)
-
-    # Establish a relationship with the Portfolio model
-    # portfolio = relationship("Portfolio", back_populates="users")
+    # portfolio_id = Column(Integer, ForeignKey("portfolios.portfolio_id", ondelete="CASCADE"))
+    # assets_id = Column(Integer, ForeignKey('assets.assets_id', ondelete="CASCADE"))
+    # assets = relationship("Asset", back_populates="users")
+    # debts_id = Column(Integer, ForeignKey('debts.debts_id', ondelete="CASCADE"))
+    # debts = relationship("Debt", back_populates="users")
     
 
 class Asset(Base):

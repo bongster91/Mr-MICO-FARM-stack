@@ -1,3 +1,5 @@
+SELECT * FROM users;
+
 SELECT * FROM assets;
 
 SELECT * FROM bank_accounts;

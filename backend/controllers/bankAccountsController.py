@@ -24,7 +24,7 @@ async def get_all_bank_accounts(db: db_dependency):
     
 @bank_accounts_router.get('/{bank_account_id}', status_code=status.HTTP_200_OK, tags=['bank_accounts'])
 async def get_one_bank_account(bank_account_id: int, db: db_dependency):
-    bank_account = db.query(models.BankAccount).filter(models.BankAccount.id == bank_account_id).first()
+    bank_account = db.query(models.BankAccount).filter(models.BankAccount.bank_accounts_id == bank_account_id).first()
     if bank_account is None:
         raise HTTPException(status_code=404, detail='Bank Account was not found')
     return bank_account
@@ -40,7 +40,7 @@ async def create_bank_account(bank_account: BankAccountBase, db: db_dependency):
 
 @bank_accounts_router.put('/{bank_account_id}', status_code=status.HTTP_200_OK, tags=['bank_accounts'])
 async def update_bank_account(bank_account_id: int, updated_bank_account: BankAccountBase, db: db_dependency):
-    db_bank_account = db.query(models.BankAccount).filter(models.BankAccount.id == bank_account_id).first()
+    db_bank_account = db.query(models.BankAccount).filter(models.BankAccount.bank_accounts_id == bank_account_id).first()
     if db_bank_account is None:
         raise HTTPException(status_code=404, detail='Bank Account was not found')
     

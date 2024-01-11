@@ -10,7 +10,16 @@ users_router = APIRouter()
 db_dependency = Annotated[Session, Depends(get_db)]
 
 class UserBase(BaseModel):
-    username: str
+    first_name: str
+    last_name: str
+    date_of_birth: str
+    address: str
+    phone_number: str
+    email: str
+    password: str
+    admin: bool
+    assets_id: int
+    debts_id: int
    
    
 @users_router.get('/', status_code=status.HTTP_200_OK, tags=['users'])

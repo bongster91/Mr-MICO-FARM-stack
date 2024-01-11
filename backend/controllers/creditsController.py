@@ -12,7 +12,7 @@ class CreditBase(BaseModel):
     name: str
     type: str
     amount: float
-    debt_id: int
+    debts_id: int
     
 @credits_router.get('/', status_code=status.HTTP_200_OK, tags=['credits'])
 async def get_all_credits(db: db_dependency):

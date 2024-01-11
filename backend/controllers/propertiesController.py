@@ -12,7 +12,7 @@ class PropertyBase(BaseModel):
     name: str
     type: str
     amount: float
-    asset_id: int
+    assets_id: int
     
 @properties_router.get('/', status_code=status.HTTP_200_OK, tags=['properties'])
 async def get_all_properties(db: db_dependency):

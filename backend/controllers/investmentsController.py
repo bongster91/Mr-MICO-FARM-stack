@@ -12,7 +12,7 @@ class InvestmentBase(BaseModel):
     name: str
     type: str
     amount: float
-    asset_id: int
+    assets_id: int
     
 @investments_router.get('/', status_code=status.HTTP_200_OK, tags=['investments'])
 async def get_all_investments(db: db_dependency):
@@ -24,7 +24,7 @@ async def get_all_investments(db: db_dependency):
     
 @investments_router.get('/{investment_id}', status_code=status.HTTP_200_OK, tags=['investments'])
 async def get_one_investment(investment_id: int, db: db_dependency):
-    investment = db.query(models.Investment).filter(models.Investment.id == investment_id).first()
+    investment = db.query(models.Investment).filter(models.Investment.investments_id == investment_id).first()
     if investment is None:
         raise HTTPException(status_code=404, detail='Investment was not found')
     return investment
@@ -40,7 +40,7 @@ async def create_investment(investment: InvestmentBase, db: db_dependency):
 
 @investments_router.put('/{investment_id}', status_code=status.HTTP_200_OK, tags=['investments'])
 async def update_investment(invesetment_id: int, updated_investment: InvestmentBase, db: db_dependency):
-    db_investment = db.query(models.BankAccount).filter(models.BankAccount.id == invesetment_id).first()
+    db_investment = db.query(models.BankAccount).filter(models.Investment.investments_id == invesetment_id).first()
     if db_investment is None:
         raise HTTPException(status_code=404, detail='Investment was not found')
     
@@ -55,7 +55,7 @@ async def update_investment(invesetment_id: int, updated_investment: InvestmentB
     
 @investments_router.delete('/{investment_id}', status_code=status.HTTP_200_OK, tags=['investments'])
 async def delete_investment(investment_id: int, db: db_dependency):
-    db_investment = db.query(models.Investment).filter(models.Investment.id == investment_id).first()
+    db_investment = db.query(models.Investment).filter(models.Investment.investments_id == investment_id).first()
     if db_investment is None:
         raise HTTPException(status_code=404, detail='Investment was not found')
     db.delete(db_investment)

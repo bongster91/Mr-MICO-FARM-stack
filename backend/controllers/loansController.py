@@ -12,7 +12,7 @@ class LoanBase(BaseModel):
     name: str
     type: str
     amount: float
-    debt_id: int
+    debts_id: int
     
 @loans_router.get('/', status_code=status.HTTP_200_OK, tags=['loans'])
 async def get_all_loans(db: db_dependency):

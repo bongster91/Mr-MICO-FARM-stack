@@ -7,7 +7,7 @@ CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
-    date_of_birth DATE NOT NULL,
+    date_of_birth VARCHAR(10),
     address TEXT,
     phone_number VARCHAR(20),
     email VARCHAR(50) UNIQUE,

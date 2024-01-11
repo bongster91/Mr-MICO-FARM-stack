@@ -12,7 +12,7 @@ class BillBase(BaseModel):
     name: str
     type: str
     amount: float
-    debt_id: int
+    debts_id: int
     
 @bills_router.get('/', status_code=status.HTTP_200_OK, tags=['bills'])
 async def get_all_bills(db: db_dependency):
@@ -22,9 +22,9 @@ async def get_all_bills(db: db_dependency):
     return bills   
     
     
-@bills_router.get('/{bill_id}', status_code=status.HTTP_200_OK, tags=['bills'])
-async def get_one_bill(bill_id: int, db: db_dependency):
-    bill = db.query(models.Bill).filter(models.Bill.id == bill_id).first()
+@bills_router.get('/{bills_id}', status_code=status.HTTP_200_OK, tags=['bills'])
+async def get_one_bill(bills_id: int, db: db_dependency):
+    bill = db.query(models.Bill).filter(models.Bill.id == bills_id).first()
     if bill is None:
         raise HTTPException(status_code=404, detail='bill was not found')
     return bill
@@ -39,8 +39,8 @@ async def create_bill(bill: BillBase, db: db_dependency):
     
 
 @bills_router.put('/{bill_id}', status_code=status.HTTP_200_OK, tags=['bills'])
-async def update_bill(bill_id: int, updated_bill: BillBase, db: db_dependency):
-    db_bill = db.query(models.Bill).filter(models.Bill.id == bill_id).first()
+async def update_bill(bills_id: int, updated_bill: BillBase, db: db_dependency):
+    db_bill = db.query(models.Bill).filter(models.Bill.id == bills_id).first()
     if db_bill is None:
         raise HTTPException(status_code=404, detail='bill was not found')
     
@@ -54,12 +54,12 @@ async def update_bill(bill_id: int, updated_bill: BillBase, db: db_dependency):
     
     
 @bills_router.delete('/{bill_id}', status_code=status.HTTP_200_OK, tags=['bills'])
-async def delete_bill(bill_id: int, db: db_dependency):
-    db_bill = db.query(models.Bill).filter(models.Bill.id == bill_id).first()
+async def delete_bill(bills_id: int, db: db_dependency):
+    db_bill = db.query(models.Bill).filter(models.Bill.id == bills_id).first()
     if db_bill is None:
         raise HTTPException(status_code=404, detail='bill was not found')
     db.delete(db_bill)
     db.commit()
-    return f'Deleted bill with id: {bill_id}'
+    return f'Deleted bill with id: {bills_id}'
     
     
