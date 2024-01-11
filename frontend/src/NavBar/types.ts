@@ -19,10 +19,6 @@ export const navItems: NavItemProps[] = [
         "redirect": '/portfolio'
     },
     {
-        "title": "Net Worth",
-        "redirect": '/net_worth'
-    },
-    {
         'title': 'Assets',
         'redirect': '/assets'
     },

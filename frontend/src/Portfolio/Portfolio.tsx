@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState, useMemo, createContext} from 'react';
 
 import { fetchRequest } from '../Api/Fetch';
 import { calculateTotal } from '../Utils/calculateTotals';
@@ -23,6 +23,16 @@ function Portfolio() {
     const [credits, setCredits] = useState<Credits[]>([]);
     const [expenses, setExpenses] = useState<Expenses[]>([]);
     const [debtsTotal, setDebtsTotal] = useState(0);
+
+    const PortfolioContext = createContext({
+        bankAccounts,
+        investments,
+        properties,
+        bills,
+        loans,
+        credits,
+        expenses
+    })
 
     const assetsAPIRequest = useMemo(() => fetchRequest('GET', 'assets'), []);
     const debtsAPIRequest = useMemo(() => fetchRequest('GET', 'debts'), []);
@@ -51,9 +61,10 @@ function Portfolio() {
     const totalAssets = useMemo(() => (
         calculateTotal(bankAccounts) + calculateTotal(investments) + calculateTotal(properties)
     ), [bankAccounts, investments, properties]);
+
     const totalDebts = useMemo(() => (
-        calculateTotal(bills) + calculateTotal(loans) + calculateTotal(credits) + calculateTotal(properties)
-    ), [bills, loans, credits, properties]);
+        calculateTotal(bills) + calculateTotal(loans) + calculateTotal(credits) + calculateTotal(expenses)
+    ), [bills, loans, credits, expenses]);
 
     useEffect(() => {
         setAssetsTotal(totalAssets)
@@ -61,17 +72,27 @@ function Portfolio() {
     }, [bankAccounts, investments, properties])
 
     return (
-        <div>
-            <h1>Portfolio</h1>
-            <div>{ bankAccounts && bankAccounts.map((el, index) => {
-                return (
-                    <div key={index}>{el.name} </div>
-                )
-            })}</div>
-            
-            <h2>Assets: {assetsTotal}</h2>
-            <h2>Debts: {debtsTotal}</h2>
-        </div>
+        <PortfolioContext.Provider value={{
+            bankAccounts,
+            investments,
+            properties,
+            bills,
+            loans,
+            credits,
+            expenses
+        }}>
+            <div>
+                <h1>Portfolio</h1>
+                <div>{ bankAccounts && bankAccounts.map((el, index) => {
+                    return (
+                        <div key={index}>{el.name} </div>
+                        )
+                    })}</div>
+                <h2>Net Worth: {assetsTotal - debtsTotal}</h2>
+                <h2>Assets: {assetsTotal}</h2>
+                <h2>Debts: {debtsTotal}</h2>
+            </div>
+         </PortfolioContext.Provider>
     );
 }
 

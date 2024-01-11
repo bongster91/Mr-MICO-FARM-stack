@@ -17,11 +17,6 @@ export const router = [
         errorElement: <NotFound />
     },
     {
-        path: '/net_worth',
-        element: <NetWorth />,
-        errorElement: <NotFound />
-    },
-    {
         path: '/assets',
         element: <Assets />,
         errorElement: <NotFound />
