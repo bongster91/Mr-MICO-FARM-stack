@@ -12,42 +12,10 @@ import App from "./App";
 
 export const router = createBrowserRouter([
     {
-<<<<<<< HEAD
         path: '/',
-        element: <Portfolio />,
-        errorElement: <NotFound />
+        element: <Portfolio />
+
     },
-    {
-        path: '/portfolio',
-        element: <Portfolio />,
-        errorElement: <NotFound />
-    },
-    {
-        path: '/net_worth',
-        element: <NetWorth />,
-        errorElement: <NotFound />
-    },
-    {
-        path: '/assets',
-        element: <Assets />,
-        errorElement: <NotFound />
-    },
-    {
-        path: '/debts',
-        element: <Debts />,
-        errorElement: <NotFound />
-    },
-    {
-        path: '*',
-        element: <NotFound />
-=======
-        element: <App />,
-        children: [
-            {
-                path: '/',
-                element: <Home />,
-                errorElement: <NotFound />
-            },
             {
                 path: '/portfolio',
                 element: <Portfolio />,
@@ -72,7 +40,6 @@ export const router = createBrowserRouter([
                 path: '*',
                 element: <NotFound />
             }
-        ]
->>>>>>> parent of 9d0d471 (wip)
-    }
+        
+    
 ]);
