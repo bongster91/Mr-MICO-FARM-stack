@@ -10,36 +10,36 @@ import Assets from './Pages/Assets';
 import Debts from './Pages/Debts';
 import App from "./App";
 
-export const router = createBrowserRouter([
+export const router = [
+    {
+        path: '/portfolio',
+        element: <Portfolio />,
+        errorElement: <NotFound />
+    },
+    {
+        path: '/net_worth',
+        element: <NetWorth />,
+        errorElement: <NotFound />
+    },
+    {
+        path: '/assets',
+        element: <Assets />,
+        errorElement: <NotFound />
+    },
+    {
+        path: '/debts',
+        element: <Debts />,
+        errorElement: <NotFound />
+    },
     {
         path: '/',
         element: <Portfolio />
-
-    },
-            {
-                path: '/portfolio',
-                element: <Portfolio />,
-                errorElement: <NotFound />
-            },
-            {
-                path: '/net_worth',
-                element: <NetWorth />,
-                errorElement: <NotFound />
-            },
-            {
-                path: '/assets',
-                element: <Assets />,
-                errorElement: <NotFound />
-            },
-            {
-                path: '/debts',
-                element: <Debts />,
-                errorElement: <NotFound />
-            },
-            {
-                path: '*',
-                element: <NotFound />
-            }
-        
     
-]);
+    },
+    {
+        path: '*',
+        element: <NotFound />
+    }
+    
+    
+];
