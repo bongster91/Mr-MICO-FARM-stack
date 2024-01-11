@@ -1,9 +1,10 @@
 import React from 'react';
+import Assets from '../Assets';
 
-function Assets() {
+function AssetsPage() {
     return (
-        <div>Assets</div>
+        <Assets />
     );
 }
 
-export default Assets;
+export default AssetsPage;
