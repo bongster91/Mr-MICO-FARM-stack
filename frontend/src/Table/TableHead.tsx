@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
@@ -17,4 +17,4 @@ function TableHeadComponent() {
     );
 }
 
-export default TableHeadComponent;
+export default memo(TableHeadComponent);

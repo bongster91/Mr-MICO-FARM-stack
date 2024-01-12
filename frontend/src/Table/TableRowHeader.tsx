@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {memo} from 'react';
 import TableRow from '@mui/material/TableRow';
 
 import TableArrowButton from './TableArrowButton';
 import TableCellComponent from './TableCell';
 
 function TableRowHeader({row, type, open, setOpen}: any) {
-    return (
+    return ( row &&
         <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
             <TableArrowButton open={open} setOpen={setOpen} />
             <TableCellComponent props={type} />
@@ -16,4 +16,4 @@ function TableRowHeader({row, type, open, setOpen}: any) {
     );
 }
 
-export default TableRowHeader;
+export default memo(TableRowHeader);

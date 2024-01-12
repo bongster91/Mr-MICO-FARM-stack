@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
@@ -13,20 +13,29 @@ function createData(asset: Asset) {
 }
 
 function TableComponent({props}: any) {
-    const rows = [
+    const assetsProps = [
         createData(props.bank_accounts),
         createData(props.investments),
         createData(props.properties)
+    ];
+    const debtsProps = [
+        createData(props.bills),
+        createData(props.loans),
+        createData(props.credits),
+        createData(props.expenses)
     ];
   
     return (
         <TableContainer component={Paper} >
             <Table aria-label="collapsible table">
                 <TableHeadComponent />
-                <TableBodyComponent rows={rows} />
+                <TableBodyComponent 
+                    rows={props.assets_id ? assetsProps : debtsProps} 
+                    type={props.assets_id ? 'assets' : 'debts'}
+                />
             </Table>
         </TableContainer>
     );
 }
 
-export default TableComponent;
+export default memo(TableComponent);

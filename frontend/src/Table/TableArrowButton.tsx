@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import IconButton from '@mui/material/IconButton';
 import TableCell from '@mui/material/TableCell';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -18,4 +18,4 @@ function TableArrowButton({open, setOpen}: any) {
     );
 }
 
-export default TableArrowButton;
+export default memo(TableArrowButton);

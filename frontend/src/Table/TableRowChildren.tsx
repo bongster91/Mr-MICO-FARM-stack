@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Table from '@mui/material/Table';
@@ -19,7 +19,7 @@ function TableRowChildren({row, open}: any) {
                                 
                             <TableBody>
                                 {
-                                    row.map((el: any, index: number) => (
+                                    row?.map((el: any, index: number) => (
                                         <TableRow key={index}>
                                             <TableCellComponent />
                                             <TableCellComponent props={el.name} />
@@ -39,4 +39,4 @@ function TableRowChildren({row, open}: any) {
     );
 }
 
-export default TableRowChildren;
+export default memo(TableRowChildren);

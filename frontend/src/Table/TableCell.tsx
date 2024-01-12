@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import TableCell from '@mui/material/TableCell';
 
 function TableCellComponent({props}: any) {
@@ -7,4 +7,4 @@ function TableCellComponent({props}: any) {
     );
 }
 
-export default TableCellComponent;
+export default memo(TableCellComponent);

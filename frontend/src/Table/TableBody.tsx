@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {memo} from 'react';
 import TableBody from '@mui/material/TableBody';
 import TableRowComponent from './TableRow';
 
-function TableBodyComponent({rows}: any) {
-    const type = rows[0][0].bank_accounts_id ? 'assets' : 'debts';
+type TableBodyComponentProp = {
+    rows: any,
+    type: string
+}
+
+function TableBodyComponent({rows, type}: any) {
     const accountNames = {
         assets: [
             'Bank Accounts',
@@ -18,6 +22,8 @@ function TableBodyComponent({rows}: any) {
         ]
     };
 
+    const rowType = type === 'assets' ? accountNames.assets : accountNames.debts;
+    
     return (
         <TableBody>
             {
@@ -25,7 +31,7 @@ function TableBodyComponent({rows}: any) {
                     <TableRowComponent 
                         key={index}
                         row={row}
-                        type={accountNames[type][index]}
+                        type={rowType[index]}
                     />
                 ))
             }
@@ -33,4 +39,4 @@ function TableBodyComponent({rows}: any) {
     );
 }
 
-export default TableBodyComponent;
+export default memo(TableBodyComponent);

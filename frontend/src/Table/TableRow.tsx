@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 import TableRowHeader from './TableRowHeader';
 import TableRowChildren from './TableRowChildren';
 
@@ -25,4 +25,4 @@ function TableRowComponent({row, type}: any) {
     );
 }
 
-export default TableRowComponent;
+export default memo(TableRowComponent);
