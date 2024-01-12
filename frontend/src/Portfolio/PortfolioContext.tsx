@@ -1,28 +1,35 @@
 import { createContext } from "react";
 import {
-    BankAccounts,
-    Investments,
-    Properties,
-    Bills,
-    Loans,
-    Credits,
-    Expenses
+    Asset,
+    Debt
 } from './types';
 
+export type Assets = {
+    bank_accounts: Asset[],
+    investments: Asset[],
+    properties: Asset[],
+}
+
+export type Debts = {
+    bills: Debt[],
+    loans: Debt[],
+    credits: Debt[],
+    expenses: Debt[]
+}
+
 export const PortfolioContext = createContext<{
-    bankAccounts: BankAccounts[],
-    investments: Investments[],
-    properties: Properties[],
-    bills: Bills[],
-    loans: Loans[],
-    credits: Credits[],
-    expenses: Expenses[]
+    assets: Assets,
+    debts: Debts
 }>({
-    bankAccounts: [],
-    investments: [],
-    properties: [],
-    bills: [],
-    loans: [],
-    credits: [],
-    expenses: []
+    assets: {
+        bank_accounts: [],
+        investments: [],
+        properties: []
+    },
+    debts: {
+        bills: [],
+        loans: [],
+        credits: [],
+        expenses: []
+    }
 });

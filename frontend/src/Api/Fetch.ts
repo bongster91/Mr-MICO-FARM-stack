@@ -7,7 +7,7 @@ const createFetchURL = (endpoint: string, index?: number) => {
     return index ? `${endpoint}/${index}` : `${endpoint}`;
 };
 
-export const fetchRequest = (
+export const fetchRequest = async (
     request: RequestMethod, 
     endpoint: string, 
     index?: number
@@ -15,10 +15,15 @@ export const fetchRequest = (
     const endpointUrl = createFetchURL(endpoint, index);
     const url = process.env.SERVER_URL;
 
-    switch (request) {
-        case 'GET':
-            return axios.get(`http://localhost:8000/${endpointUrl}`);
-        default:
-            throw new Error(`Unsupported request type: ${request}`);
+    try {
+        switch (request) {
+            case 'GET':
+                const response = await axios.get(`http://localhost:8000/${endpointUrl}`);
+                return response
+            default:
+                throw new Error(`Unsupported request type: ${request}`);
+        }
+    } catch (error) {
+        throw new Error(`Failed fetch request: ${error}`)
     }
 };

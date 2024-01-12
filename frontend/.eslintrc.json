@@ -16,7 +16,6 @@
     ],
     "rules": {
         "block-spacing": "warn",
-        "camelcase": "warn",
         "linebreak-style": "warn",
         "newline-before-return": "warn",
         "semi": "warn"

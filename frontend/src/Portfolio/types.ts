@@ -1,48 +1,22 @@
-export type BankAccounts = {
-    name: string
-    type: string
-    amount: number
-    assets_id: number
+interface BaseItem {
+    name: string;
+    type: string;
+    amount: number;
 }
-
-export type Investments = {
-    name: string
-    type: string
-    amount: number
-    assets_id: number
+  
+export interface Asset extends BaseItem {
+    assets_id: number;
 }
-
-export type Properties = {
-    name: string
-    type: string
-    amount: number
-    assets_id: number
+  
+export interface Debt extends BaseItem {
+    debts_id: number;
 }
-
-export type Bills = {
-    name: string
-    type: string
-    amount: number
-    debts_id: number
-}
-
-export type Loans = {
-    name: string
-    type: string
-    amount: number
-    debts_id: number
-}
-
-export type Credits = {
-    name: string
-    type: string
-    amount: number
-    debts_id: number
-}
-
-export type Expenses = {
-    name: string
-    type: string
-    amount: number
-    debts_id: number
-}
+  
+export type BankAccounts = Asset;
+export type Investments = Asset;
+export type Properties = Asset;
+export type Bills = Debt;
+export type Loans = Debt;
+export type Credits = Debt;
+export type Expenses = Debt;
+  
