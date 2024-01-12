@@ -17,7 +17,7 @@ from controllers.loansController import loans_router
 from controllers.creditsController import credits_router
 from controllers.expensesController import expenses_router
 
-origins = ['https://localhost:3000']
+origins = ['http://localhost:3000']
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)

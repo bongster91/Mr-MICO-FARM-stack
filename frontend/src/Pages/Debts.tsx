@@ -1,9 +1,10 @@
 import React from 'react';
+import Debts from '../Debts';
 
-function Debts() {
+function DebtsPage() {
     return (
-        <div>Debts</div>
+        <Debts />
     );
 }
 
-export default Debts;
+export default DebtsPage;
