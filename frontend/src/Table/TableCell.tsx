@@ -3,7 +3,7 @@ import TableCell from '@mui/material/TableCell';
 
 function TableCellComponent({props}: any) {
     return (
-        <TableCell>{props}</TableCell>
+        <TableCell align='left'>{props}</TableCell>
     );
 }
 

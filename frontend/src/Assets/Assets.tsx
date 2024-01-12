@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect, useMemo, memo } from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams, GridRowProps } from '@mui/x-data-grid';
 
 import { PortfolioContext } from '../Portfolio/PortfolioContext';
 import { calculateTotal } from '../Utils/calculateTotals';

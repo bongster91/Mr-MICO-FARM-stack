@@ -7,14 +7,14 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 function TableArrowButton({open, setOpen}: any) {
     return (
         <TableCell>
-                <IconButton
-                    aria-label="expand row"
-                    size="small"
-                    onClick={() => setOpen(!open)}
-                >
+            <IconButton
+                aria-label="expand row"
+                size="small"
+                onClick={() => setOpen(!open)}
+            >
                 {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                </IconButton>
-            </TableCell>
+            </IconButton>
+        </TableCell>
     );
 }
 

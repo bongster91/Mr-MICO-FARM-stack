@@ -1,18 +1,17 @@
 import React from 'react';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
+import TableCellComponent from './TableCell';
+
 function TableHeadComponent() {
     return (
-        <TableHead>
-            <TableRow>
-                <TableCell />
-                <TableCell>Name</TableCell>
-                <TableCell>Type</TableCell>
-                <TableCell>Amount</TableCell>
+        <TableHead >
+            <TableRow >
+                <TableCellComponent />
+                <TableCellComponent props={'Name'} />
+                <TableCellComponent props={'Type'} />
+                <TableCellComponent props={'Amount'} />
             </TableRow>
         </TableHead>
     );
