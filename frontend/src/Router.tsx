@@ -8,6 +8,9 @@ import Portfolio from './Pages/Portfolio';
 import NetWorth from './Pages/NetWorth';
 import Assets from './Pages/Assets';
 import Debts from './Pages/Debts';
+import Security from './Pages/SecurityPage';
+import CustomerService from './Pages/ServicePage';
+import Contact from './Pages/ContactPage';
 import App from "./App";
 
 export const router = [
@@ -25,6 +28,18 @@ export const router = [
         path: '/debts',
         element: <Debts />,
         errorElement: <NotFound />
+    },
+    {
+        path: '/security',
+        element: <Security />
+    },
+    {
+        path: '/service',
+        element: <CustomerService />
+    },
+    {
+        path: '/contact',
+        element: <Contact />
     },
     {
         path: '/',
