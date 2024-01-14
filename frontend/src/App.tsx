@@ -7,6 +7,7 @@ import { router } from './Router';
 import NavBar from "./NavBar";
 import { PortfolioContext, Assets, Debts } from './Portfolio/PortfolioContext';
 import BottomBar from './BottomBar';
+import SideBar from './SideBar';
 
 function App() {
 
@@ -58,11 +59,14 @@ function App() {
         <div className="App">
             <PortfolioContext.Provider value={portfolio}>
                 <NavBar />
-                <Routes>
-                    {router.map((route, index) => (
-                        <Route path={route.path} element={route.element} key={index} />
-                    ))}
-                </Routes>
+                <div style={{display: 'grid', gridTemplateColumns: '3fr 1fr', gap: '10px'}}>
+                    <Routes>
+                        {router.map((route, index) => (
+                            <Route path={route.path} element={route.element} key={index} />
+                            ))}
+                    </Routes>
+                    <SideBar />
+                </div>
                 <BottomBar />
             </PortfolioContext.Provider>
         </div>
