@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect, useMemo, memo } from 'react';
 
 import { PortfolioContext } from '../Portfolio/PortfolioContext';
-import { calculateTotal } from '../Utils/calculateTotals';
+import { calculateTotal } from '../Helper/calculateTotals';
 import TableComponent from '../Table/TableComponent';
+import { insertCommas } from '../Helper/insertCommas';
 
 function Assets() {
     const { assets } = useContext(PortfolioContext);
@@ -17,7 +18,7 @@ function Assets() {
     return (
         <div style={{ height: 400, width: '100%' }}>
             <h1>Assets</h1>
-            <h2>{totalAssets}</h2>
+            <h2>{ `$${insertCommas(totalAssets)}` }</h2>
             <TableComponent props={assets} />
         </div>
     );

@@ -7,7 +7,7 @@ type TableBodyComponentProp = {
     type: string
 }
 
-function TableBodyComponent({rows, type}: any) {
+function TableBodyComponent({rows, type}: TableBodyComponentProp) {
     const accountNames = {
         assets: [
             'Bank Accounts',

@@ -7,6 +7,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 
 import TableCellComponent from './TableCell';
+import {insertCommas} from '../Helper/insertCommas';
 
 function TableRowChildren({row, open}: any) {
     return (
@@ -24,7 +25,7 @@ function TableRowChildren({row, open}: any) {
                                             <TableCellComponent />
                                             <TableCellComponent props={el.name} />
                                             <TableCellComponent props={el.type} />
-                                            <TableCellComponent props={el.amount} />
+                                            <TableCellComponent props={`$${insertCommas(el.amount)}`} />
                                         </TableRow>
                                     ))
                                 }
