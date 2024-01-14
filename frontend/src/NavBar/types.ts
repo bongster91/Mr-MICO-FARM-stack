@@ -25,5 +25,9 @@ export const navItems: NavItemProps[] = [
     {
         'title': 'Debts',
         "redirect": '/debts'
+    },
+    {
+        'title': 'Contact Us',
+        'redirect': '/contact'
     }
 ];

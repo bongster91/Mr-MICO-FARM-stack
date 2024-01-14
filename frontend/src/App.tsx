@@ -6,6 +6,7 @@ import { router } from './Router';
 
 import NavBar from "./NavBar";
 import { PortfolioContext, Assets, Debts } from './Portfolio/PortfolioContext';
+import BottomBar from './BottomBar';
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
                         <Route path={route.path} element={route.element} key={index} />
                     ))}
                 </Routes>
+                <BottomBar />
             </PortfolioContext.Provider>
         </div>
     );
