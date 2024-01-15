@@ -1,13 +1,12 @@
 import React from 'react';
-import Sponsered from '../Miscellanous/Sponsered';
-import DebitCard from '../Miscellanous/DebitCard';
+import Sponsered from '../Miscellanous/MiscCards/Sponsered';
+import DebitCard from '../Miscellanous/MiscCards/DebitCard';
+import MiscCards from '../Miscellanous/MiscCards';
 
 function SideBar() {
     return (
         <div>
-            <DebitCard />
-            <Sponsered />
-            SideBar
+            <MiscCards />
         </div>
     );
 }
