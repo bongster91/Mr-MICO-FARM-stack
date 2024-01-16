@@ -7,10 +7,7 @@ import { insertCommas } from '../Helper/insertCommas';
 
 function Debts() {
     const { debts } = useContext(PortfolioContext);
-    const bills = debts.bills;
-    const loans = debts.loans;
-    const credits = debts.credits;
-    const expenses = debts.expenses;
+    const { bills, loans, credits, expenses } = debts;
 
     const totalDebts = useMemo(() => (
         calculateTotal(bills) + calculateTotal(loans) + calculateTotal(credits) + calculateTotal(expenses)

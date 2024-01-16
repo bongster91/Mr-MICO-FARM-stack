@@ -7,9 +7,7 @@ import { insertCommas } from '../Helper/insertCommas';
 
 function Assets() {
     const { assets } = useContext(PortfolioContext);
-    const bank_accounts = assets.bank_accounts;
-    const investments = assets.investments;
-    const properties = assets.properties;
+    const { bank_accounts, investments, properties } = assets;
 
     const totalAssets = useMemo(() => (
         calculateTotal(bank_accounts) + calculateTotal(investments) + calculateTotal(properties)
