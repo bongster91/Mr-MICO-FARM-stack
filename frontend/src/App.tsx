@@ -1,8 +1,10 @@
-import React, {useState, useEffect, useMemo, useCallback, memo} from 'react';
+import React, {useState, useEffect, useMemo, memo} from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import { fetchRequest } from './Api/Fetch';
 import { router } from './Router';
+import { theme }from './Styles/Theme';
 
 import NavBar from "./NavBar";
 import { PortfolioContext, Assets, Debts } from './Portfolio/PortfolioContext';
@@ -57,6 +59,7 @@ function App() {
 
     return (
         <div className="App">
+            <ThemeProvider theme={theme}>
             <PortfolioContext.Provider value={portfolio}>
                 <NavBar />
                 <div style={{display: 'grid', gridTemplateColumns: '3fr 1fr', gap: '10px'}}>
@@ -69,6 +72,7 @@ function App() {
                 </div>
                 <BottomBar />
             </PortfolioContext.Provider>
+            </ThemeProvider>
         </div>
     );
 }

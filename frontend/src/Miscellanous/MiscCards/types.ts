@@ -20,5 +20,4 @@ export const miscCardsItems: MiscCardsProps[] = [
         sentence: 'The New Yorker',
         paragraph: 'Is Mr.MICO the hottest new finance app right now?'
     }
-
 ];

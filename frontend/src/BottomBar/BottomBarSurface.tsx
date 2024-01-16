@@ -7,7 +7,7 @@ import { BottomBarSurfaceProps } from './types';
 
 const BottomBarSurface: React.FC<BottomBarSurfaceProps> = ({children}) => {
     return (
-        <Box sx={{ flexGrow: 1, position: 'absolute', bottom: '0'}}>
+        <Box>
             <AppBar position="static">
                 <Toolbar>
                     {children}
