@@ -58,13 +58,13 @@ function PortfolioAssets({totalAssetsAmount, assets}: PortfolioAssetsProps) {
                         title={`Assets`}
                         subheader={`$${insertCommas(totalAssetsAmount)}`}
                     />
-                    <div style={{width: '50%', height: '50%'}}>
-                        <Pie
-                            data={data}
-                            options={options} 
-                        />
-                    </div>
                 </Link>
+                <div style={{width: '30%', height: '30%'}}>
+                    <Pie
+                        data={data}
+                        options={options} 
+                    />
+                </div>
             </CardContent>
         </Card>
     );

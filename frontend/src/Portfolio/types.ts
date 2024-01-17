@@ -33,3 +33,13 @@ export type PortfolioAssetsProps = {
         properties: Properties[]
     }
 }
+
+export type PortfolioDebtsProps = {
+    totalDebtsAmount: number;
+    debts: {
+        bills: Bills[],
+        loans: Loans[],
+        credits: Credits[],
+        expenses: Expenses[]
+    }
+}

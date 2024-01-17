@@ -1,9 +1,5 @@
-import React, {useEffect, useState, useMemo, memo, useContext, useCallback} from 'react';
+import React, { useState, useMemo, memo, useContext } from 'react';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import Chart from '../d3/Chart';
@@ -13,21 +9,10 @@ import { PortfolioContext } from './PortfolioContext';
 import { calculateTotal } from '../Helper/calculateTotals';
 import PortfolioHeader from './PortfolioHeader';
 import PortfolioAssets from './PortfolioAssets';
-import { 
-    BankAccounts, 
-    Investments, 
-    Properties,
-    Bills,
-    Loans,
-    Credits,
-    Expenses
-} from './types';
-
+import PortfolioDebts from './PortfolioDebts';
 
 function Portfolio() {
     const { assets, debts } = useContext(PortfolioContext);
-    const [totalAssets, setTotalAssets] = useState(0);
-    const [totalDebts, setTotalDebts] = useState(0);
     const { bank_accounts, investments, properties } = assets;
     const { bills, loans, credits, expenses } = debts;
 
@@ -51,9 +36,10 @@ function Portfolio() {
                     assets={assets}
                 />
                 
-                
-                
-                <Typography component={'h4'} variant='h4'>Debt: ${insertCommas(totalDebtsAmount)}</Typography>
+                <PortfolioDebts
+                    totalDebtsAmount={totalDebtsAmount}
+                    debts={debts}
+                />
             </Box>
     );
 }
