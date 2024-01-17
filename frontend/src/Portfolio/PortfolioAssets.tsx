@@ -51,7 +51,7 @@ function PortfolioAssets({totalAssetsAmount, assets}: PortfolioAssetsProps) {
     };
 
     return (
-        <Card>
+        <Card style={{}}>
             <CardContent>
                 <Link to={'/assets'} style={{color: 'black', textDecoration: 'none'}}>
                     <CardHeader

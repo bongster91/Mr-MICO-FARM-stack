@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 
 import { NavBarSurfaceProps } from './types';
-import { useTheme } from '@emotion/react';
+import { useTheme } from '@mui/material';
 
 
 const NavSurface: React.FC<NavBarSurfaceProps> = ({children}) => {
@@ -13,7 +13,7 @@ const NavSurface: React.FC<NavBarSurfaceProps> = ({children}) => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar style={{ backgroundColor: theme.palette.primary.dark }}>
                     {children}
                 </Toolbar>
             </AppBar>

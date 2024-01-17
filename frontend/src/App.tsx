@@ -63,16 +63,16 @@ function App() {
             <ThemeProvider theme={theme}>
                 <PortfolioContext.Provider value={portfolio}>
                     <div className='app'>
-                    <NavBar />
-                    <div style={{display: 'grid', gridTemplateColumns: '3fr 1fr'}}>
-                        <Routes>
-                            {router.map((route, index) => (
-                                <Route path={route.path} element={route.element} key={index} />
-                                ))}
-                        </Routes>
-                        <SideBar />
-                    </div>
-                    <BottomBar />
+                        <NavBar />
+                        <div className='main-section'>
+                            <Routes>
+                                {router.map((route, index) => (
+                                    <Route path={route.path} element={route.element} key={index} />
+                                    ))}
+                            </Routes>
+                            <SideBar />
+                        </div>
+                        <BottomBar />
                     </div>
                 </PortfolioContext.Provider>
             </ThemeProvider>
