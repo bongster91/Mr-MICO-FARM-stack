@@ -45,11 +45,14 @@ function Portfolio() {
                     totalAssetsAmount={totalAssetsAmount}
                     totalDebtsAmount={totalDebtsAmount}
                 />
-                    
+                
+                <PortfolioAssets
+                    totalAssetsAmount={totalAssetsAmount}
+                    assets={assets}
+                />
                 
                 
-                <Typography component={'h4'} variant='h4'>Assets: ${insertCommas(totalAssetsAmount)}</Typography>
-                <Chart />
+                
                 <Typography component={'h4'} variant='h4'>Debt: ${insertCommas(totalDebtsAmount)}</Typography>
             </Box>
     );

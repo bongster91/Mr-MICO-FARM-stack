@@ -24,3 +24,12 @@ export type PortfolioHeaderProps = {
     totalAssetsAmount: number;
     totalDebtsAmount: number;
 }
+
+export type PortfolioAssetsProps = {
+    totalAssetsAmount: number;
+    assets: {
+        bank_accounts: BankAccounts[]
+        investments: Investments[]
+        properties: Properties[]
+    }
+}

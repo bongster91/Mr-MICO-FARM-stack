@@ -64,7 +64,7 @@ function App() {
                 <PortfolioContext.Provider value={portfolio}>
                     <div className='app'>
                     <NavBar />
-                    <div style={{display: 'grid', gridTemplateColumns: '3fr 1fr', gap: '10px'}}>
+                    <div style={{display: 'grid', gridTemplateColumns: '3fr 1fr'}}>
                         <Routes>
                             {router.map((route, index) => (
                                 <Route path={route.path} element={route.element} key={index} />
