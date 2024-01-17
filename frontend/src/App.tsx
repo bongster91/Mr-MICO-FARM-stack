@@ -2,6 +2,7 @@ import React, {useState, useEffect, useMemo, memo} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+import './App.css';
 import { fetchRequest } from './Api/Fetch';
 import { router } from './Router';
 import { theme }from './Styles/Theme';
@@ -58,20 +59,22 @@ function App() {
     }, [assetsAPIRequest, debtsAPIRequest]);
 
     return (
-        <div className="App">
+        <div>
             <ThemeProvider theme={theme}>
-            <PortfolioContext.Provider value={portfolio}>
-                <NavBar />
-                <div style={{display: 'grid', gridTemplateColumns: '3fr 1fr', gap: '10px'}}>
-                    <Routes>
-                        {router.map((route, index) => (
-                            <Route path={route.path} element={route.element} key={index} />
-                            ))}
-                    </Routes>
-                    <SideBar />
-                </div>
-                <BottomBar />
-            </PortfolioContext.Provider>
+                <PortfolioContext.Provider value={portfolio}>
+                    <div className='app'>
+                    <NavBar />
+                    <div style={{display: 'grid', gridTemplateColumns: '3fr 1fr', gap: '10px'}}>
+                        <Routes>
+                            {router.map((route, index) => (
+                                <Route path={route.path} element={route.element} key={index} />
+                                ))}
+                        </Routes>
+                        <SideBar />
+                    </div>
+                    <BottomBar />
+                    </div>
+                </PortfolioContext.Provider>
             </ThemeProvider>
         </div>
     );

@@ -19,4 +19,8 @@ export type Bills = Debt;
 export type Loans = Debt;
 export type Credits = Debt;
 export type Expenses = Debt;
-  
+
+export type PortfolioHeaderProps = {
+    totalAssetsAmount: number;
+    totalDebtsAmount: number;
+}
