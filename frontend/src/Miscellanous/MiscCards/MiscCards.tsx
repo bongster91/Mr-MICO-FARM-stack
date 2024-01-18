@@ -4,10 +4,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material';
 
 import { miscCardsItems } from './types';
+import { CustomButton } from '../../Styles/Components';
 
 function MiscCards() {
+    const theme = useTheme();
+
     return (
         <Box>
             {
@@ -19,7 +23,16 @@ function MiscCards() {
                                 <Typography variant='body1' component={'p'}>{card.sentence}</Typography>
                                 <Typography variant='body1' component={'p'}>{card.paragraph}</Typography>
                                 <br />
-                                <Button style={{outline: '1px solid black'}}>Continue</Button>
+                                <Button 
+                                    style={{
+                                        outline: '1px solid black', 
+                                        color: 'black',
+                                        backgroundColor: theme.palette.primary.main,
+                                        outlineColor: theme.palette.primary.main
+                                    }}
+                                >
+                                    Continue
+                                </Button>
                             </CardContent>
                         </Card>
                             
