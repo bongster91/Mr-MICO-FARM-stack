@@ -17,7 +17,7 @@ function Assets() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { bank_accounts, investments, properties } = assets;
 
-    const totalAssets = useMemo(() => (
+    const totalAssets: number = useMemo(() => (
         calculateTotal(bank_accounts) + calculateTotal(investments) + calculateTotal(properties)
     ), [bank_accounts, investments, properties]);
     
@@ -40,7 +40,7 @@ function Assets() {
                 type={'assets'}
                 isModalOpen={isModalOpen}
                 handleModalOpen={handleModalOpen}
-                request={'post'}
+                request={'POST'}
             />
             <TableComponent props={assets} />
         </div>

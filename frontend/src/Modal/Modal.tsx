@@ -13,26 +13,14 @@ import { ModalPopUpProps, assetTypes, debtTypes } from './types';
 import { handleRequest } from './ModalRequest';
 import './style.css';
 
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    height: 400,
-    bgcolor: 'black',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
-
 
 function ModalPopUp({...props}: ModalPopUpProps){
     const { type, isModalOpen, handleModalOpen, request } = props;
     const [formValue, setFormValue] = useState({
         name: '',
         type: '',
-        amount: ''
+        amount: '',
+        assets_id: 1
     });
 
     const theme = useTheme();
@@ -42,12 +30,13 @@ function ModalPopUp({...props}: ModalPopUpProps){
         ?
             setFormValue({ ...formValue, [e.target.id]: e.target.value }) 
         : 
-            setFormValue({ ...formValue, [e.target.name]: e.target.value }) 
+            setFormValue({ ...formValue, [e.target.name]: e.target.value }); 
     };
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async(e: any) => {
         e.preventDefault();
-        handleRequest(type, request, formValue);
+        const response = await handleRequest(type, request, formValue);
+   
     };
 
     return (
@@ -91,11 +80,11 @@ function ModalPopUp({...props}: ModalPopUpProps){
                         type === 'assets' 
                         ?
                             assetTypes.map((asset, index) => {
-                                return <MenuItem key={index} value={asset.value}>{asset.label}</MenuItem>
+                                return <MenuItem key={index} value={asset.value}>{asset.label}</MenuItem>;
                             })
                         :
                             debtTypes.map((debt, index) => {
-                                return <MenuItem key={index} value={debt.value}>{debt.label}</MenuItem>
+                                return <MenuItem key={index} value={debt.value}>{debt.label}</MenuItem>;
                             })
                     }
                 </TextField>

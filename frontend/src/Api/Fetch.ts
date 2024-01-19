@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 
 const createFetchURL = (endpoint: string, index?: number) => {
@@ -8,8 +8,9 @@ const createFetchURL = (endpoint: string, index?: number) => {
 };
 
 export const fetchRequest = async (
-    request: RequestMethod, 
-    endpoint: string, 
+    request: string, 
+    endpoint: string,
+    requestObject?: {},
     index?: number
 ): Promise<AxiosResponse> => {
     const endpointUrl = createFetchURL(endpoint, index);
@@ -18,12 +19,25 @@ export const fetchRequest = async (
     try {
         switch (request) {
             case 'GET':
-                const response = await axios.get(`http://localhost:8000/${endpointUrl}`);
-                return response
+                const getResponse = await axios.get(`http://localhost:8000/${endpointUrl}`);
+
+                return getResponse;
+            case 'POST':
+                const postResponse = await axios.post(`http://localhost:8000/${endpointUrl}`, requestObject);
+
+                return postResponse;
+            case 'PUT':
+                const editResponse = await axios.post(`http://localhost:8000/${endpointUrl}`, requestObject);
+
+                return editResponse;
+            case 'DELETE':
+                const deleteResponse = await axios.post(`http://localhost:8000/${endpointUrl}`);
+
+                return deleteResponse;
             default:
                 throw new Error(`Unsupported request type: ${request}`);
         }
     } catch (error) {
-        throw new Error(`Failed fetch request: ${error}`)
+        throw new Error(`Failed fetch request: ${error}`);
     }
 };
