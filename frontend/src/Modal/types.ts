@@ -3,6 +3,7 @@ export type ModalPopUpProps = {
     isModalOpen: boolean;
     handleModalOpen: () => void;
     request: string;
+    handleSuccessAlert: (response:string) => void;
 }
 
 export const assetTypes = [

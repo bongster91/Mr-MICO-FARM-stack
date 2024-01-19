@@ -5,7 +5,7 @@ import { RequestMethod, fetchRequest } from "../Api/Fetch";
 const findAccountType = (type: string, formValues: any) => {
     const accountTypes = type === 'assets' ? assetTypes : debtTypes;
     const account = accountTypes.filter((el) => el.value === formValues.type);
-
+    
     return account[0];
 };
 

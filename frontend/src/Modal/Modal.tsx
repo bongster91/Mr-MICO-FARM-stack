@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Backdrop from '@mui/material/Backdrop';
 import { useTheme } from '@mui/material';
 import { Typography } from '@mui/material';
+import Alert from '@mui/material/Alert';
 
 import { ModalPopUpProps, assetTypes, debtTypes } from './types';
 import { handleRequest } from './ModalRequest';
@@ -15,28 +16,36 @@ import './style.css';
 
 
 function ModalPopUp({...props}: ModalPopUpProps){
-    const { type, isModalOpen, handleModalOpen, request } = props;
+    const { type, isModalOpen, handleModalOpen, request, handleSuccessAlert } = props;
     const [formValue, setFormValue] = useState({
         name: '',
         type: '',
-        amount: '',
-        assets_id: 1
+        amount: ''
     });
 
     const theme = useTheme();
 
     const handleChange = (e: any) => {
-        e.target.id 
-        ?
-            setFormValue({ ...formValue, [e.target.id]: e.target.value }) 
-        : 
-            setFormValue({ ...formValue, [e.target.name]: e.target.value }); 
+        if (type === 'assets') {
+            e.target.id 
+            ?
+                setFormValue((prev) => ({ ...prev, [e.target.id]: e.target.value, assets_id: 1 })) 
+            : 
+                setFormValue((prev) => ({ ...formValue, [e.target.name]: e.target.value, assets_id: 1 })); 
+        } else {
+            e.target.id 
+            ?
+                setFormValue((prev) => ({ ...prev, [e.target.id]: e.target.value, debts_id: 1 })) 
+            : 
+                setFormValue((prev) => ({ ...formValue, [e.target.name]: e.target.value, debts_id: 1 })); 
+        };
     };
 
     const handleSubmit = async(e: any) => {
         e.preventDefault();
         const response = await handleRequest(type, request, formValue);
-   
+
+        return handleSuccessAlert(response);
     };
 
     return (

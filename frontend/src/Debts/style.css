@@ -1,0 +1,17 @@
+.debts-container {
+    height: 100%;
+    width: 80%;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+}
+
+.debts-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.debts-add-button {
+    width: 50px;
+}
