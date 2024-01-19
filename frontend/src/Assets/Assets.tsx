@@ -25,7 +25,7 @@ function Assets() {
     };
 
     return (
-        <div style={{ height: 400, width: '100%' }}>
+        <div className='assets-container' style={{ height: '100%', width: '80%' }}>
             <Typography component={'h3'} variant={'h3'}>Assets</Typography>
             <Typography component={'h4'} variant={'h4'}>{ `$${insertCommas(totalAssets)}` }</Typography>
             <Button>
@@ -37,6 +37,7 @@ function Assets() {
                 type={'assets'}
                 isModalOpen={isModalOpen}
                 handleModalOpen={handleModalOpen}
+                request={'post'}
             />
             <TableComponent props={assets} />
         </div>

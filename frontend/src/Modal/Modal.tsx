@@ -1,4 +1,4 @@
-import React, { EventHandler } from 'react';
+import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import{ Box }from '@mui/material';
@@ -7,8 +7,11 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Backdrop from '@mui/material/Backdrop';
 import { useTheme } from '@mui/material';
+import { Typography } from '@mui/material';
 
 import { ModalPopUpProps, assetTypes, debtTypes } from './types';
+import { handleRequest } from './ModalRequest';
+import './style.css';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -25,29 +28,30 @@ const style = {
 
 
 function ModalPopUp({...props}: ModalPopUpProps){
-    const { type, isModalOpen, handleModalOpen } = props;
+    const { type, isModalOpen, handleModalOpen, request } = props;
+    const [formValue, setFormValue] = useState({
+        name: '',
+        type: '',
+        amount: ''
+    });
+
     const theme = useTheme();
 
     const handleChange = (e: any) => {
-        console.log(e.target)
-    }
+        setFormValue({ ...formValue, [e.target.id]: [e.target.value] });  
+    };
 
     const handleSubmit = (e: any) => {
-        console.log(e)
+        e.preventDefault();
+        handleRequest(type, request, formValue);
     };
 
     return (
         <Modal
+            className='modal'
             open={isModalOpen}
             onClose={handleModalOpen}
             closeAfterTransition
-            style={{
-                top: '30%', 
-                left: '30%', 
-                width: 600, 
-                height: 300, 
-                backgroundColor: 'white'
-            }}
             slots={{ backdrop: Backdrop }}
             slotProps={{
                 backdrop: {
@@ -57,28 +61,25 @@ function ModalPopUp({...props}: ModalPopUpProps){
                     }
                 }
             }}
-
         >
-            <Box component={'form'} 
-                sx={{ 
-                    width: 600, 
-                    height: 300, 
-                    flex: 'space-between', 
-                    justifyContent: 'space-between', 
-                    boxShadow: 24
-                }}>
+            <Box 
+                className='modal-form-box'
+                component={'form'} 
+            >
                 <TextField
                     required
-                    id="outlined-required"
+                    id="name"
                     label="Title"
                     onChange={handleChange}
-                    value
+                    value={formValue.name}
                 />
                 <TextField
-                    id='outlined-required'
+                    id='type'
+                    className='modal-dropdown'
                     select
                     label='Type'
                     onChange={handleChange}
+                    value={formValue.type}
                     defaultValue={type === 'assets' ? 'Checking' : 'Household'}
                 >
                     {
@@ -95,20 +96,29 @@ function ModalPopUp({...props}: ModalPopUpProps){
                 </TextField>
                 <TextField
                     required
-                    id="outlined-required"
+                    id="amount"
                     label="Amount"
                     onChange={handleChange}
+                    value={formValue.amount}
                 />
                 <Button 
+                    className='modal-submit-button'
                     onClick={handleSubmit} 
                     style={{
-                        outline: '1px solid black', 
-                        color: 'black',
-                        backgroundColor: theme.palette.primary.main,
+                        backgroundColor: theme.palette.primary.dark,
                         outlineColor: theme.palette.primary.main
                     }}>
                         Submit
-                    </Button>
+                </Button>
+                <Button 
+                    className='modal-cancel-button'
+                    onClick={handleModalOpen} 
+                    style={{
+                        backgroundColor: theme.palette.primary.light,
+                        outlineColor: theme.palette.primary.main
+                    }}>
+                        Cancel
+                </Button>
             </Box>
         </Modal>
     );

@@ -1,0 +1,40 @@
+.modal {
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    height: 30%;
+    background-color: white;
+    padding: 4;
+    /* transform: translate(-50%, -50%); */
+    outline: 1px solid black;
+    border-radius: 2%;
+}
+
+.modal-form-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: space-between;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.modal-dropdown {
+    width: 200px;
+}
+
+.modal-submit-button {
+    outline: 1px solid black;
+    color: black;
+    position: absolute;
+    right: 16%;
+    bottom: 5%;
+}
+
+.modal-cancel-button {
+    outline: 1px solid black;
+    color: black;
+    position: absolute;
+    right: 3%;
+    bottom: 5%;
+}
