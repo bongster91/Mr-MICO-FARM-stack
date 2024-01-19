@@ -1,0 +1,17 @@
+.assets-container {
+    height: 100%;
+    width: 80%;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+}
+
+.assets-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.assets-add-button {
+    width: 50px;
+}

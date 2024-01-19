@@ -38,7 +38,11 @@ function ModalPopUp({...props}: ModalPopUpProps){
     const theme = useTheme();
 
     const handleChange = (e: any) => {
-        setFormValue({ ...formValue, [e.target.id]: [e.target.value] });  
+        e.target.id 
+        ?
+            setFormValue({ ...formValue, [e.target.id]: e.target.value }) 
+        : 
+            setFormValue({ ...formValue, [e.target.name]: e.target.value }) 
     };
 
     const handleSubmit = (e: any) => {
@@ -76,6 +80,7 @@ function ModalPopUp({...props}: ModalPopUpProps){
                 <TextField
                     id='type'
                     className='modal-dropdown'
+                    name='type'
                     select
                     label='Type'
                     onChange={handleChange}

@@ -10,6 +10,7 @@ import { calculateTotal } from '../Helper/calculateTotals';
 import TableComponent from '../Table/TableComponent';
 import { insertCommas } from '../Helper/insertCommas';
 import ModalPopUp from '../Modal/Modal';
+import './style.css';
 
 function Assets() {
     const { assets } = useContext(PortfolioContext);
@@ -25,14 +26,16 @@ function Assets() {
     };
 
     return (
-        <div className='assets-container' style={{ height: '100%', width: '80%' }}>
-            <Typography component={'h3'} variant={'h3'}>Assets</Typography>
-            <Typography component={'h4'} variant={'h4'}>{ `$${insertCommas(totalAssets)}` }</Typography>
-            <Button>
-                <AddCircleIcon 
-                    onClick={handleModalOpen}
-                    />
-            </Button>
+        <div className='assets-container'>
+            <div className='assets-header'>
+                <Typography component={'h4'} variant={'h4'}>Assets</Typography>
+                <Typography component={'h4'} variant={'h4'}>{ `$${insertCommas(totalAssets)}` }</Typography>
+                <Button className='assets-add-button'>
+                    <AddCircleIcon 
+                        onClick={handleModalOpen}
+                        />
+                </Button>
+            </div>
             <ModalPopUp
                 type={'assets'}
                 isModalOpen={isModalOpen}
