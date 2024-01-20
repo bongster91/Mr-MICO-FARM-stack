@@ -23,7 +23,7 @@ function TableBodyComponent({rows, type}: TableBodyComponentProp) {
     };
 
     const rowType = type === 'assets' ? accountNames.assets : accountNames.debts;
-    
+
     return (
         <TableBody>
             {
@@ -32,6 +32,7 @@ function TableBodyComponent({rows, type}: TableBodyComponentProp) {
                         key={index}
                         row={row}
                         type={rowType[index]}
+                        generalType={type}
                     />
                 ))
             }

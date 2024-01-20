@@ -2,7 +2,7 @@ import axios from "axios";
 import { assetTypes, debtTypes } from "./types";
 import { RequestMethod, fetchRequest } from "../Api/Fetch";
 
-const findAccountType = (type: string, formValues: any) => {
+export const findAccountType = (type: string, formValues: any) => {
     const accountTypes = type === 'assets' ? assetTypes : debtTypes;
     const account = accountTypes.filter((el) => el.value === formValues.type);
     

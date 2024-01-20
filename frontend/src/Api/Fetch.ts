@@ -3,18 +3,17 @@ import axios, { AxiosResponse } from "axios";
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 
-const createFetchURL = (endpoint: string, index?: number) => {
-    return index ? `${endpoint}/${index}` : `${endpoint}`;
+const createFetchURL = (endpoint: string, id?: number) => {
+    return id ? `${endpoint}/${id}` : `${endpoint}`;
 };
 
 export const fetchRequest = async (
     request: string, 
     endpoint: string,
     requestObject?: {},
-    index?: number
+    id?: number
 ): Promise<AxiosResponse> => {
-    const endpointUrl = createFetchURL(endpoint, index);
-    const url = process.env.SERVER_URL;
+    const endpointUrl = createFetchURL(endpoint, id);
 
     try {
         switch (request) {
@@ -27,11 +26,11 @@ export const fetchRequest = async (
 
                 return postResponse;
             case 'PUT':
-                const editResponse = await axios.post(`http://localhost:8000/${endpointUrl}`, requestObject);
+                const editResponse = await axios.put(`http://localhost:8000/${endpointUrl}`, requestObject);
 
                 return editResponse;
             case 'DELETE':
-                const deleteResponse = await axios.post(`http://localhost:8000/${endpointUrl}`);
+                const deleteResponse = await axios.delete(`http://localhost:8000/${endpointUrl}`);
 
                 return deleteResponse;
             default:
