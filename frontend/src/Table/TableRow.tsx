@@ -8,7 +8,7 @@ import { RequestMethod, fetchRequest } from "../Api/Fetch";
 
 
 
-function TableRowComponent({row, type, generalType}: any) {
+function TableRowComponent({row, type, generalType, handleSuccessAlert}: any) {
     const [open, setOpen] = useState(false);
    
     const findAccountType = (accountType: any) => {
@@ -41,6 +41,7 @@ function TableRowComponent({row, type, generalType}: any) {
                 row={row}
                 open={open}
                 handleDelete={handleDelete}
+                handleSuccessAlert={handleSuccessAlert}
             />
             
         </React.Fragment>

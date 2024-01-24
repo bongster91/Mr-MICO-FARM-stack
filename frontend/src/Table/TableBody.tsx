@@ -3,11 +3,12 @@ import TableBody from '@mui/material/TableBody';
 import TableRowComponent from './TableRow';
 
 type TableBodyComponentProp = {
-    rows: any,
-    type: string
+    rows: any;
+    type: string;
+    handleSuccessAlert: () => void;
 }
 
-function TableBodyComponent({rows, type}: TableBodyComponentProp) {
+function TableBodyComponent({rows, type, handleSuccessAlert}: TableBodyComponentProp) {
     const accountNames = {
         assets: [
             'Bank Accounts',
@@ -33,6 +34,7 @@ function TableBodyComponent({rows, type}: TableBodyComponentProp) {
                         row={row}
                         type={rowType[index]}
                         generalType={type}
+                        handleSuccessAlert={handleSuccessAlert}
                     />
                 ))
             }

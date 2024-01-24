@@ -13,4 +13,5 @@ export type TableRowChildrenProps = {
     ];
     open: boolean;
     handleDelete: (e: any) => void;
+    handleSuccessAlert: () => void;
 }

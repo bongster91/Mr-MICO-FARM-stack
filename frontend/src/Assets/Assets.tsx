@@ -59,7 +59,7 @@ function Assets() {
                 request={'POST'}
                 handleSuccessAlert={handleSuccessAlert}
             />
-            <TableComponent props={assets} />
+            <TableComponent props={assets} handleSuccessAlert={handleSuccessAlert} />
         </div>
     );
 }

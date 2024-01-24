@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Table from '@mui/material/Table';
@@ -13,9 +13,17 @@ import Checkbox from '@mui/material/Checkbox';
 import TableCellComponent from './TableCell';
 import {insertCommas} from '../Helper/insertCommas';
 import { TableRowChildrenProps } from './types';
+import TableModal from './TableModal';
 
-function TableRowChildren({row, open, handleDelete}: TableRowChildrenProps) {
-   
+function TableRowChildren({row, open, handleDelete, handleSuccessAlert}: TableRowChildrenProps) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formValues, setFormValues] = useState({});
+
+    const handleModalOpen = (el:any) => {
+        setIsModalOpen(true);
+        setFormValues(el);
+    };
+
     return (
         <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -25,14 +33,32 @@ function TableRowChildren({row, open, handleDelete}: TableRowChildrenProps) {
                         <Table size="small" aria-label="purchases">
                                 
                             <TableBody>
+                                <tr>
+                                    <td>
+                                        {
+                                            isModalOpen ?
+                                                <TableModal 
+                                                    props={formValues}
+                                                    handleSuccessAlert={handleSuccessAlert}
+                                                />
+                                            : ''
+                                        }
+                                    </td>
+                                </tr>
                                 {
                                     row?.map((el: any, index: number) => (
                                         <TableRow key={index}>
                                             <td style={{width: '60px', padding: 0, margin: 0, display: 'flex'}}>
-                                                <Button sx={{outline: '1px solid black', padding: 0, minWidth: '10px', p: '2px'}}>
+                                                <Button 
+                                                    onClick={() => handleModalOpen(el)}
+                                                    sx={{outline: '1px solid black', padding: 0, minWidth: '10px', p: '2px'}}
+                                                >
                                                     <EditIcon />
                                                 </Button>
-                                                <Button onClick={() => handleDelete(el)} sx={{outline: '1px solid black', padding: 0, minWidth: '10px', p: '2px'}}>
+                                                <Button 
+                                                    onClick={() => handleDelete(el)} 
+                                                    sx={{outline: '1px solid black', padding: 0, minWidth: '10px', p: '2px'}}
+                                                >
                                                     <DeleteIcon />
                                                 </Button>
                                             </td>

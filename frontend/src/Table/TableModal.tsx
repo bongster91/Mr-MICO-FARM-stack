@@ -51,8 +51,8 @@ function TableModal({props, handleSuccessAlert}: any){
         e.preventDefault();
         
         const accountType = findAccountType(generalType, formValue);
-        const response = await handlePutRequest(generalType, 'PUT', formValue, props);
-        
+        const response = await handlePutRequest(accountType.type, 'PUT', formValue, props);
+
         return handleSuccessAlert(response);
     };
 
