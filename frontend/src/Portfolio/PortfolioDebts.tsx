@@ -66,7 +66,7 @@ function PortfolioDebts({ totalDebtsAmount,debts }: PortfolioDebtsProps) {
                         subheader={`$${insertCommas(totalDebtsAmount)}`}
                     />
                 </Link>
-                <div style={{width: '30%', height: '30%'}}>
+                <div style={{width: '50%', height: '50%'}}>
                     <Pie
                         data={data}
                         options={options} 

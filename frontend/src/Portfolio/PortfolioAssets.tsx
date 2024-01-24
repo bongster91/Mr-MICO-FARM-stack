@@ -51,7 +51,7 @@ function PortfolioAssets({totalAssetsAmount, assets}: PortfolioAssetsProps) {
     };
 
     return (
-        <Card style={{}}>
+        <Card className='portfolio-assets-container' style={{justifyContent: 'center'}}>
             <CardContent>
                 <Link to={'/assets'} style={{color: 'black', textDecoration: 'none'}}>
                     <CardHeader
@@ -59,7 +59,7 @@ function PortfolioAssets({totalAssetsAmount, assets}: PortfolioAssetsProps) {
                         subheader={`$${insertCommas(totalAssetsAmount)}`}
                     />
                 </Link>
-                <div style={{width: '30%', height: '30%'}}>
+                <div style={{width: '50%', height: '50%'}}>
                     <Pie
                         data={data}
                         options={options} 

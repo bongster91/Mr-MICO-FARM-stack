@@ -18,7 +18,7 @@ function MiscCards() {
             {
                 miscCardsItems.map((card, index) => {
                     return (
-                        <Card variant='outlined' key={index} className='misc-card'>
+                        <Card variant='outlined' key={index}className='misc-card'>
                             <CardContent>
                                 <Typography variant='h5' component={'div'}>{card.title}</Typography>
                                 <Typography variant='body1' component={'p'}>{card.sentence}</Typography>

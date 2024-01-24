@@ -12,7 +12,7 @@ import { PortfolioHeaderProps } from './types';
 function PortfolioHeader({totalAssetsAmount, totalDebtsAmount}: PortfolioHeaderProps) {
     
     return (
-        <Card>
+        <Card className='portfolio-header'>
             <CardContent>
                 <Typography component={'h1'} variant='h4'>Portfolio</Typography>
                 <Typography component={'h2'} variant='h5'>

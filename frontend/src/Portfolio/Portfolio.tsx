@@ -25,7 +25,7 @@ function Portfolio() {
     ), [bills, loans, credits, expenses]);
 
     return (
-            <Box>
+            <Box className='portfolio-container'>
                 <PortfolioHeader 
                     totalAssetsAmount={totalAssetsAmount}
                     totalDebtsAmount={totalDebtsAmount}
