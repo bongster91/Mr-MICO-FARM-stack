@@ -45,7 +45,7 @@ function ModalPopUp({...props}: ModalPopUpProps){
         e.preventDefault();
         const response = await handleRequest(type, request, formValue);
 
-        return handleSuccessAlert(response);
+        if (response === 'Success') handleSuccessAlert('Success');
     };
 
     return (

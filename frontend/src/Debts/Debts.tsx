@@ -59,7 +59,7 @@ function Debts() {
                 request={'POST'}
                 handleSuccessAlert={handleSuccessAlert}
             />
-            <TableComponent props={debts} />
+            <TableComponent props={debts} handleSuccessAlert={handleSuccessAlert} />
         </div>
     );
 }

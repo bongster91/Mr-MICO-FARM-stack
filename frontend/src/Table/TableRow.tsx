@@ -22,9 +22,8 @@ function TableRowComponent({row, type, generalType, handleSuccessAlert}: any) {
         const row = e;
         const id = findId(row);
         const accountType = findAccountType(row);
-
         const response = await fetchRequest('DELETE', accountType.type, undefined, id);
-        console.log(response);
+        if (response.status === 200) handleSuccessAlert('Success');
     };
 
     return (

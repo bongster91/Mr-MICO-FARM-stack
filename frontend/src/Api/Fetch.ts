@@ -31,7 +31,7 @@ export const fetchRequest = async (
                 return editResponse;
             case 'DELETE':
                 const deleteResponse = await axios.delete(`http://localhost:8000/${endpointUrl}`);
-
+               
                 return deleteResponse;
             default:
                 throw new Error(`Unsupported request type: ${request}`);
