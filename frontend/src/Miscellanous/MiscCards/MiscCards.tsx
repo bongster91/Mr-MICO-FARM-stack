@@ -8,16 +8,17 @@ import { useTheme } from '@mui/material';
 
 import { miscCardsItems } from './types';
 import { CustomButton } from '../../Styles/Components';
+import '../styles.css';
 
 function MiscCards() {
     const theme = useTheme();
 
     return (
-        <Box>
+        <Box className='sidebar-container'>
             {
                 miscCardsItems.map((card, index) => {
                     return (
-                        <Card variant='outlined' key={index} style={{height: '350px'}}>
+                        <Card variant='outlined' key={index} className='misc-card'>
                             <CardContent>
                                 <Typography variant='h5' component={'div'}>{card.title}</Typography>
                                 <Typography variant='body1' component={'p'}>{card.sentence}</Typography>

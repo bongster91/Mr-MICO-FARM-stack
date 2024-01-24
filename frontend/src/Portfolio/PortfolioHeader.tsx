@@ -14,8 +14,8 @@ function PortfolioHeader({totalAssetsAmount, totalDebtsAmount}: PortfolioHeaderP
     return (
         <Card>
             <CardContent>
-                <Typography component={'h1'} variant='h3'>Portfolio</Typography>
-                <Typography component={'h2'} variant='h4'>
+                <Typography component={'h1'} variant='h4'>Portfolio</Typography>
+                <Typography component={'h2'} variant='h5'>
                         Net Worth: ${insertCommas(totalAssetsAmount - totalDebtsAmount)}
                  </Typography>
             </CardContent>

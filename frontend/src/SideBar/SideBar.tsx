@@ -5,7 +5,7 @@ import MiscCards from '../Miscellanous/MiscCards';
 
 function SideBar() {
     return (
-        <div>
+        <div className='sidebar'>
             <MiscCards />
         </div>
     );
