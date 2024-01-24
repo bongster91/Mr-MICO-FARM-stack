@@ -54,7 +54,7 @@ INSERT INTO bills (
 ) VALUES
     ('12-Cat Collect', 'Household', 500.00, 1),
     ('Cats-R-Us', 'Household', 700.00, 1), 
-    ('Feline Finder', 'Other', 100.00, 1), 
+    ('Feline Finder', 'Misc', 100.00, 1), 
     ('Netflix', 'Subscription', 100.00, 1),
     ('Kitty Koffee Kollective', 'Subscription', 100.00, 1)
 ;
@@ -81,8 +81,8 @@ INSERT INTO credits (
 INSERT INTO expenses (
     name, type, amount, debts_id
 ) VALUES
-    ('Relaxing Sauna', 'spa day', 500.00, 1),
-    ('Starbucks', 'vanilla latte', 10.50, 1), 
-    ('Kitty Rolex', 'watch on sale', 12000.00, 1), 
-    ('Catnip', 'snacks for the month', 950.00, 1)
+    ('Relaxing Sauna', 'Misc', 500.00, 1),
+    ('Starbucks', 'Misc', 10.50, 1), 
+    ('Kitty Rolex', 'Misc', 12000.00, 1), 
+    ('Catnip', 'Misc', 950.00, 1)
 ;
