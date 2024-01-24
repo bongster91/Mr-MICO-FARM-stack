@@ -30,7 +30,7 @@ async def get_one_bank_account(bank_account_id: int, db: db_dependency):
     return bank_account
 
 
-@bank_accounts_router.post('/', status_code=status.HTTP_201_CREATED, tags=['bank_accounts'])
+@bank_accounts_router.post('/', status_code=status.HTTP_200_OK, tags=['bank_accounts'])
 async def create_bank_account(bank_account: BankAccountBase, db: db_dependency):
     db_bank_account = models.BankAccount(**bank_account.model_dump())
     db.add(db_bank_account)
@@ -55,7 +55,7 @@ async def update_bank_account(bank_account_id: int, updated_bank_account: BankAc
     
 @bank_accounts_router.delete('/{bank_account_id}', status_code=status.HTTP_200_OK, tags=['bank_accounts'])
 async def delete_bank_account(bank_account_id: int, db: db_dependency):
-    db_bank_account = db.query(models.BankAccount).filter(models.BankAccount.id == bank_account_id).first()
+    db_bank_account = db.query(models.BankAccount).filter(models.BankAccount.bank_accounts_id == bank_account_id).first()
     if db_bank_account is None:
         raise HTTPException(status_code=404, detail='Bank Account was not found')
     db.delete(db_bank_account)

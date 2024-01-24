@@ -44,7 +44,7 @@ async def get_one_bank_account(assets_id: int, db: db_dependency):
     return asset
 
 
-@assets_router.post('/', status_code=status.HTTP_201_CREATED, tags=['assets'])
+@assets_router.post('/', status_code=status.HTTP_200_OK, tags=['assets'])
 async def create_assets(asset: AssetBase, db: db_dependency, data: dict):
     try:
         asset_data = data.get("asset", {})

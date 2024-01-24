@@ -24,13 +24,13 @@ async def get_all_credits(db: db_dependency):
     
 @credits_router.get('/{credit_id}', status_code=status.HTTP_200_OK, tags=['credits'])
 async def get_one_credit(credit_id: int, db: db_dependency):
-    credit = db.query(models.Credit).filter(models.Credit.id == credit_id).first()
+    credit = db.query(models.Credit).filter(models.Credit.credits_id == credit_id).first()
     if credit is None:
         raise HTTPException(status_code=404, detail='credit was not found')
     return credit
 
 
-@credits_router.post('/', status_code=status.HTTP_201_CREATED, tags=['credits'])
+@credits_router.post('/', status_code=status.HTTP_200_OK, tags=['credits'])
 async def create_credit(credit: CreditBase, db: db_dependency):
     db_credit = models.Credit(**credit.model_dump())
     db.add(db_credit)
@@ -40,7 +40,7 @@ async def create_credit(credit: CreditBase, db: db_dependency):
 
 @credits_router.put('/{credit_id}', status_code=status.HTTP_200_OK, tags=['credits'])
 async def update_credit(credit_id: int, updated_credit: CreditBase, db: db_dependency):
-    db_credit = db.query(models.Credit).filter(models.Credit.id == credit_id).first()
+    db_credit = db.query(models.Credit).filter(models.Credit.credits_id == credit_id).first()
     if db_credit is None:
         raise HTTPException(status_code=404, detail='credit was not found')
     
@@ -55,7 +55,7 @@ async def update_credit(credit_id: int, updated_credit: CreditBase, db: db_depen
     
 @credits_router.delete('/{credit_id}', status_code=status.HTTP_200_OK, tags=['credits'])
 async def delete_credit(credit_id: int, db: db_dependency):
-    db_credit = db.query(models.Credit).filter(models.Credit.id == credit_id).first()
+    db_credit = db.query(models.Credit).filter(models.Credit.credits_id == credit_id).first()
     if db_credit is None:
         raise HTTPException(status_code=404, detail='credit was not found')
     db.delete(db_credit)

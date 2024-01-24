@@ -24,13 +24,13 @@ async def get_all_loans(db: db_dependency):
     
 @loans_router.get('/{loan_id}', status_code=status.HTTP_200_OK, tags=['loans'])
 async def get_one_loan(loan_id: int, db: db_dependency):
-    loan = db.query(models.Loan).filter(models.Loan.id == loan_id).first()
+    loan = db.query(models.Loan).filter(models.Loan.loans_id == loan_id).first()
     if loan is None:
         raise HTTPException(status_code=404, detail='loan was not found')
     return loan
 
 
-@loans_router.post('/', status_code=status.HTTP_201_CREATED, tags=['loans'])
+@loans_router.post('/', status_code=status.HTTP_200_OK, tags=['loans'])
 async def create_loan(loan: LoanBase, db: db_dependency):
     db_loan = models.Loan(**loan.model_dump())
     db.add(db_loan)
@@ -40,7 +40,7 @@ async def create_loan(loan: LoanBase, db: db_dependency):
 
 @loans_router.put('/{loan_id}', status_code=status.HTTP_200_OK, tags=['loans'])
 async def update_loan(loan_id: int, updated_loan: LoanBase, db: db_dependency):
-    db_loan = db.query(models.Loan).filter(models.Loan.id == loan_id).first()
+    db_loan = db.query(models.Loan).filter(models.Loan.loans_id == loan_id).first()
     if db_loan is None:
         raise HTTPException(status_code=404, detail='loan was not found')
     
@@ -55,7 +55,7 @@ async def update_loan(loan_id: int, updated_loan: LoanBase, db: db_dependency):
     
 @loans_router.delete('/{loan_id}', status_code=status.HTTP_200_OK, tags=['loans'])
 async def delete_loan(loan_id: int, db: db_dependency):
-    db_loan = db.query(models.Loan).filter(models.Loan.id == loan_id).first()
+    db_loan = db.query(models.Loan).filter(models.Loan.loans_id == loan_id).first()
     if db_loan is None:
         raise HTTPException(status_code=404, detail='loan was not found')
     db.delete(db_loan)

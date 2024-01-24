@@ -24,13 +24,13 @@ async def get_all_properties(db: db_dependency):
     
 @properties_router.get('/{property_id}', status_code=status.HTTP_200_OK, tags=['properties'])
 async def get_one_property(property_id: int, db: db_dependency):
-    property = db.query(models.Property).filter(models.Property.id == property_id).first()
+    property = db.query(models.Property).filter(models.Property.properties_id == property_id).first()
     if property is None:
         raise HTTPException(status_code=404, detail='Property was not found')
     return property
 
 
-@properties_router.post('/', status_code=status.HTTP_201_CREATED, tags=['properties'])
+@properties_router.post('/', status_code=status.HTTP_200_OK, tags=['properties'])
 async def create_property(property: PropertyBase, db: db_dependency):
     db_property = models.Property(**property.model_dump())
     db.add(db_property)
@@ -40,7 +40,7 @@ async def create_property(property: PropertyBase, db: db_dependency):
 
 @properties_router.put('/{property_id}', status_code=status.HTTP_200_OK, tags=['properties'])
 async def update_property(property_id: int, updated_property: PropertyBase, db: db_dependency):
-    db_property = db.query(models.Property).filter(models.Property.id == property_id).first()
+    db_property = db.query(models.Property).filter(models.Property.properties_id == property_id).first()
     if db_property is None:
         raise HTTPException(status_code=404, detail='Property was not found')
     
@@ -55,7 +55,7 @@ async def update_property(property_id: int, updated_property: PropertyBase, db: 
     
 @properties_router.delete('/{property_id}', status_code=status.HTTP_200_OK, tags=['properties'])
 async def delete_property(property_id: int, db: db_dependency):
-    db_property = db.query(models.Property).filter(models.Property.id == property_id).first()
+    db_property = db.query(models.Property).filter(models.Property.properties_id == property_id).first()
     if db_property is None:
         raise HTTPException(status_code=404, detail='Property was not found')
     db.delete(db_property)

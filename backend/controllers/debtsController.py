@@ -47,7 +47,7 @@ async def get_one_bank_account(debts_id: int, db: db_dependency):
     return debt
 
 
-@debts_router.post('/', status_code=status.HTTP_201_CREATED, tags=['debts'])
+@debts_router.post('/', status_code=status.HTTP_200_OK, tags=['debts'])
 async def create_debts(debt: DebtsBase, db: db_dependency, data: dict):
     try:
         debt_data = data.get("debt", {})

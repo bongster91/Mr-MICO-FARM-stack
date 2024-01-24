@@ -24,13 +24,13 @@ async def get_all_bills(db: db_dependency):
     
 @bills_router.get('/{bills_id}', status_code=status.HTTP_200_OK, tags=['bills'])
 async def get_one_bill(bills_id: int, db: db_dependency):
-    bill = db.query(models.Bill).filter(models.Bill.id == bills_id).first()
+    bill = db.query(models.Bill).filter(models.Bill.bills_id == bills_id).first()
     if bill is None:
         raise HTTPException(status_code=404, detail='bill was not found')
     return bill
 
 
-@bills_router.post('/', status_code=status.HTTP_201_CREATED, tags=['bills'])
+@bills_router.post('/', status_code=status.HTTP_200_OK, tags=['bills'])
 async def create_bill(bill: BillBase, db: db_dependency):
     db_bill = models.Bill(**bill.model_dump())
     db.add(db_bill)
@@ -38,9 +38,9 @@ async def create_bill(bill: BillBase, db: db_dependency):
     return f'Created bill: {db_bill}'
     
 
-@bills_router.put('/{bill_id}', status_code=status.HTTP_200_OK, tags=['bills'])
+@bills_router.put('/{bills_id}', status_code=status.HTTP_200_OK, tags=['bills'])
 async def update_bill(bills_id: int, updated_bill: BillBase, db: db_dependency):
-    db_bill = db.query(models.Bill).filter(models.Bill.id == bills_id).first()
+    db_bill = db.query(models.Bill).filter(models.Bill.bills_id == bills_id).first()
     if db_bill is None:
         raise HTTPException(status_code=404, detail='bill was not found')
     
@@ -53,13 +53,15 @@ async def update_bill(bills_id: int, updated_bill: BillBase, db: db_dependency):
     return db_bill
     
     
-@bills_router.delete('/{bill_id}', status_code=status.HTTP_200_OK, tags=['bills'])
+@bills_router.delete('/{bills_id}', status_code=status.HTTP_200_OK, tags=['bills'])
 async def delete_bill(bills_id: int, db: db_dependency):
-    db_bill = db.query(models.Bill).filter(models.Bill.id == bills_id).first()
-    if db_bill is None:
-        raise HTTPException(status_code=404, detail='bill was not found')
-    db.delete(db_bill)
-    db.commit()
-    return f'Deleted bill with id: {bills_id}'
-    
+    try:
+        db_bill = db.query(models.Bill).filter(models.Bill.bills_id == bills_id).first()
+        if db_bill is None:
+            raise HTTPException(status_code=404, detail='bill was not found')
+        db.delete(db_bill)
+        db.commit()
+        return f'Deleted bill with id: {bills_id}'
+    except Exception as e:
+        return f'Failed to delete: ${e}'
     

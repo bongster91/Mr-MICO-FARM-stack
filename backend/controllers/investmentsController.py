@@ -30,7 +30,7 @@ async def get_one_investment(investment_id: int, db: db_dependency):
     return investment
 
 
-@investments_router.post('/', status_code=status.HTTP_201_CREATED, tags=['investments'])
+@investments_router.post('/', status_code=status.HTTP_200_OK, tags=['investments'])
 async def create_investment(investment: InvestmentBase, db: db_dependency):
     db_investment = models.Investment(**investment.model_dump())
     db.add(db_investment)
@@ -40,7 +40,7 @@ async def create_investment(investment: InvestmentBase, db: db_dependency):
 
 @investments_router.put('/{investment_id}', status_code=status.HTTP_200_OK, tags=['investments'])
 async def update_investment(invesetment_id: int, updated_investment: InvestmentBase, db: db_dependency):
-    db_investment = db.query(models.BankAccount).filter(models.Investment.investments_id == invesetment_id).first()
+    db_investment = db.query(models.Investment).filter(models.Investment.investments_id == invesetment_id).first()
     if db_investment is None:
         raise HTTPException(status_code=404, detail='Investment was not found')
     

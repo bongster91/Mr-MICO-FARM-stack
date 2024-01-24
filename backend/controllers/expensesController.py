@@ -24,13 +24,13 @@ async def get_all_expenses(db: db_dependency):
     
 @expenses_router.get('/{expense_id}', status_code=status.HTTP_200_OK, tags=['expenses'])
 async def get_one_expense(expense_id: int, db: db_dependency):
-    expense = db.query(models.Expense).filter(models.Expense.id == expense_id).first()
+    expense = db.query(models.Expense).filter(models.Expense.expenses_id == expense_id).first()
     if expense is None:
         raise HTTPException(status_code=404, detail='expense was not found')
     return expense
 
 
-@expenses_router.post('/', status_code=status.HTTP_201_CREATED, tags=['expenses'])
+@expenses_router.post('/', status_code=status.HTTP_200_OK, tags=['expenses'])
 async def create_expense(expense: ExpnseBase, db: db_dependency):
     db_expense = models.Expense(**expense.model_dump())
     db.add(db_expense)
@@ -40,7 +40,7 @@ async def create_expense(expense: ExpnseBase, db: db_dependency):
 
 @expenses_router.put('/{expense_id}', status_code=status.HTTP_200_OK, tags=['expenses'])
 async def update_expense(expense_id: int, updated_expense: ExpnseBase, db: db_dependency):
-    db_expense = db.query(models.Expense).filter(models.Expense.id == expense_id).first()
+    db_expense = db.query(models.Expense).filter(models.Expense.expenses_id == expense_id).first()
     if db_expense is None:
         raise HTTPException(status_code=404, detail='expense was not found')
     
@@ -55,7 +55,7 @@ async def update_expense(expense_id: int, updated_expense: ExpnseBase, db: db_de
     
 @expenses_router.delete('/{expense_id}', status_code=status.HTTP_200_OK, tags=['expenses'])
 async def delete_expense(expense_id: int, db: db_dependency):
-    db_expense = db.query(models.Expense).filter(models.Expense.id == expense_id).first()
+    db_expense = db.query(models.Expense).filter(models.Expense.expenses_id == expense_id).first()
     if db_expense is None:
         raise HTTPException(status_code=404, detail='expense was not found')
     db.delete(db_expense)
