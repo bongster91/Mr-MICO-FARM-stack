@@ -6,7 +6,7 @@ import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { useTheme } from '@mui/material';
+import { useTheme, Box } from '@mui/material';
 
 import { insertCommas } from '../Helper/insertCommas';
 import { calculateTotal } from '../Helper/calculateTotals';
@@ -51,8 +51,9 @@ function PortfolioAssets({totalAssetsAmount, assets}: PortfolioAssetsProps) {
     };
 
     return (
-        <Card className='portfolio-assets-container' style={{justifyContent: 'center'}}>
+        <Card className='portfolio-assets-container'>
             <CardContent>
+                <Box style={{}}>
                 <Link to={'/assets'} style={{color: 'black', textDecoration: 'none'}}>
                     <CardHeader
                         title={`Assets`}
@@ -65,6 +66,7 @@ function PortfolioAssets({totalAssetsAmount, assets}: PortfolioAssetsProps) {
                         options={options} 
                     />
                 </div>
+                </Box>
             </CardContent>
         </Card>
     );

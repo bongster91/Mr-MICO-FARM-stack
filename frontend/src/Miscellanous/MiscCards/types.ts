@@ -19,5 +19,20 @@ export const miscCardsItems: MiscCardsProps[] = [
         title: 'Sponsered',
         sentence: 'The New Yorker',
         paragraph: 'Is Mr.MICO the hottest new finance app right now?'
+    },
+    {
+        title: 'Home Lending',
+        sentence: 'Take the easier way home',
+        paragraph: 'Try our easy-to-use affordability calculator and see how much home you may be able to afford.'
+    },
+    {
+        title: 'Business Credit Card',
+        sentence: '$750 bonus cash back',
+        paragraph: 'Plus, unlimited 1.5% cash back on every purchase with the Ink Business Unlimited credit card. Terms apply.'
+    },
+    {
+        title: 'Mr.MICO Freedom Unlimited',
+        sentence: 'Earn a $200 bonus + 5% gas and grocery store offer',
+        paragraph: 'Plus earn unlimited 1.5% cash back or more on all purchases, including 3% on dining and drugstores -- all with no annual fee.'
     }
 ];

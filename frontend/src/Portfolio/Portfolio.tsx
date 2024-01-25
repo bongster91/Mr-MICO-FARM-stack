@@ -25,7 +25,7 @@ function Portfolio() {
     ), [bills, loans, credits, expenses]);
 
     return (
-            <Box className='portfolio-container'>
+            <Box className='portfolio-container' sx={{gridColumn: '2/3'}}>
                 <PortfolioHeader 
                     totalAssetsAmount={totalAssetsAmount}
                     totalDebtsAmount={totalDebtsAmount}

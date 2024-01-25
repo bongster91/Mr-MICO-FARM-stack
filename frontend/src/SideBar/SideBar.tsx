@@ -5,7 +5,7 @@ import MiscCards from '../Miscellanous/MiscCards';
 
 function SideBar() {
     return (
-        <div className='sidebar'>
+        <div className='sidebar' style={{gridColumn: '2/3', display: 'grid', gridTemplateColumns: '2 1fr'}}>
             <MiscCards />
         </div>
     );
