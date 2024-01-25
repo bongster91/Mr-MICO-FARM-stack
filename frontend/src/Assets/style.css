@@ -1,4 +1,5 @@
 .assets-container {
+    grid-column: 2/3;
     height: 100%;
     width: 80%;
     padding: 3em;

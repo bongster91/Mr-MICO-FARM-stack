@@ -1,0 +1,11 @@
+.navbar {
+    flex-grow: 1;
+    background-color: #4297ff;
+    color: #F7D58C
+}
+
+.dark-navbar {
+    flex-grow: 1;
+    background-color: #183D3D;
+    color: #F7D58C;
+}

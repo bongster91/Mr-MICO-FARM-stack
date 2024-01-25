@@ -5,15 +5,16 @@ import Toolbar from '@mui/material/Toolbar';
 
 import { NavBarSurfaceProps } from './types';
 import { useTheme } from '@mui/material';
-
+import useDarkTheme from '../DarkModeTheme';
+import './styles.css';
 
 const NavSurface: React.FC<NavBarSurfaceProps> = ({children}) => {
-    const theme = useTheme();
+    const { isDarkMode } = useDarkTheme();
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box  sx={{ flexGrow: 1 }}>
             <AppBar position="static">
-                <Toolbar style={{ backgroundColor: theme.palette.primary.dark }}>
+                <Toolbar className={isDarkMode ? 'dark-navbar' : 'navbar'}>
                     {children}
                 </Toolbar>
             </AppBar>

@@ -69,9 +69,9 @@ function App() {
             <ThemeProvider theme={theme}>
                 <DarkThemeProvider value={{ isDarkMode, changeDarkMode }}>
                     <PortfolioContext.Provider value={portfolio}>
-                        <div className='app'>
+                        <div className={isDarkMode ? 'dark-app' : 'app'}>
                             <NavBar />
-                            <div className='main-section'>
+                            <div className={isDarkMode ? 'dark-main-section' : 'main-section'}>
                                 <Routes>
                                     {router.map((route, index) => (
                                         <Route path={route.path} element={route.element} key={index} />

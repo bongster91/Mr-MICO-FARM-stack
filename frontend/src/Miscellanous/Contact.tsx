@@ -3,7 +3,7 @@ import { Card, CardContent, Typography } from '@mui/material';
 
 function Contact() {
     return (
-        <Card>
+        <Card className='misc-tab'>
             <CardContent>
                 <Typography variant='h6'>If you need to contact us, we&apos;re here to help.</Typography>
                 <Typography variant='h6'>Get online and mobile banking support, or help with your account.</Typography>

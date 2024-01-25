@@ -1,3 +1,7 @@
 .misc-card {
     height: '200px'
 }
+
+.misc-tab {
+    grid-column: 2/3;
+}

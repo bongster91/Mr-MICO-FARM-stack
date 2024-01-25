@@ -4,7 +4,7 @@ import { CardContent, Typography } from '@mui/material';
 
 function CustomerService() {
     return (
-        <Card>
+        <Card className='misc-tab'>
             <CardContent>
                 <Typography variant='h4'>Welcome to Customer Service</Typography>
                 <Typography variant='body1'>We&apos;ll help you find a solution.</Typography>

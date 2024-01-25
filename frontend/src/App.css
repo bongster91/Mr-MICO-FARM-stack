@@ -1,5 +1,16 @@
+.dark-app {
+    background-color: #183D3D;
+    color: #5C8374;
+}
 
 .main-section {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
+}
+
+.dark-main-section {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    background-color: #183D3D;
+    color: #5C8374;
 }
