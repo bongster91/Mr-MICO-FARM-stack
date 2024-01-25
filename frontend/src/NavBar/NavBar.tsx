@@ -1,16 +1,20 @@
-import * as React from 'react';
+import React, { useState, useContext, MouseEvent } from 'react';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 
 import NavSurface from './NavSurface';
 import NavMenu from './NavMenu';
 import UserButton from './UserButton';
 import NavItem from './NavItem';
-import { NavItemProps, navItems } from './types';
+import { DarkModeContext, NavItemProps, navItems } from './types';
+import useDarkTheme from '../DarkModeTheme';
 
 const NavBar = () => {
-    const [auth, setAuth] = React.useState(true);
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const { isDarkMode, changeDarkMode } = useDarkTheme();
+    const [auth, setAuth] = useState(true);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -26,6 +30,11 @@ const NavBar = () => {
                         <NavItem item={item} key={index} />
                     );
                 })
+            }
+            {
+                isDarkMode ?
+                <LightModeIcon onClick={changeDarkMode} />
+                : <DarkModeIcon  onClick={changeDarkMode}/>
             }
             {
                 auth && ( 

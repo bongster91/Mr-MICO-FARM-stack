@@ -11,6 +11,7 @@ import NavBar from "./NavBar";
 import { PortfolioContext, Assets, Debts } from './Portfolio/PortfolioContext';
 import BottomBar from './BottomBar';
 import SideBar from './SideBar';
+import { DarkThemeProvider } from './DarkModeTheme';
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
         assets: Assets;
         debts: Debts;
     };
-
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const [portfolio, setPortfolio] = useState<Portfolio>({
         assets: {
             bank_accounts: [],
@@ -58,23 +59,30 @@ function App() {
         fetchData();
     }, [assetsAPIRequest, debtsAPIRequest]);
 
+    const changeDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+        console.log(isDarkMode)
+    };
+
     return (
         <div>
             <ThemeProvider theme={theme}>
-                <PortfolioContext.Provider value={portfolio}>
-                    <div className='app'>
-                        <NavBar />
-                        <div className='main-section'>
-                            <Routes>
-                                {router.map((route, index) => (
-                                    <Route path={route.path} element={route.element} key={index} />
-                                    ))}
-                            </Routes>
-                            <SideBar />
+                <DarkThemeProvider value={{ isDarkMode, changeDarkMode }}>
+                    <PortfolioContext.Provider value={portfolio}>
+                        <div className='app'>
+                            <NavBar />
+                            <div className='main-section'>
+                                <Routes>
+                                    {router.map((route, index) => (
+                                        <Route path={route.path} element={route.element} key={index} />
+                                        ))}
+                                </Routes>
+                                <SideBar />
+                            </div>
+                            <BottomBar />
                         </div>
-                        <BottomBar />
-                    </div>
-                </PortfolioContext.Provider>
+                    </PortfolioContext.Provider>
+                </DarkThemeProvider>
             </ThemeProvider>
         </div>
     );

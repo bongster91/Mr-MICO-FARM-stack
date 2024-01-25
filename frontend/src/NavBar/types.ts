@@ -1,3 +1,10 @@
+import { createContext, Dispatch, SetStateAction } from "react";
+
+export type NavBarProps = {
+    isDarkMode: {darkMode: boolean};
+    setIsDarkMode: any;
+}
+
 export type NavBarSurfaceProps = {
     children: React.ReactNode
 }
@@ -39,3 +46,9 @@ export const navItems: NavItemProps[] = [
         'redirect': '/contact'
     }
 ];
+
+export const DarkModeContext = createContext<{
+    darkMode: boolean;
+}>({
+    darkMode: false
+});
