@@ -8,30 +8,24 @@ import { useTheme } from '@mui/material';
 
 import { miscCardsItems } from './types';
 import { CustomButton } from '../../Styles/Components';
+import useDarkTheme from '../../DarkModeTheme';
 import '../styles.css';
 
 function MiscCards() {
-    const theme = useTheme();
+    const { isDarkMode } = useDarkTheme();
 
     return (
-        <Box className='sidebar-container'>
+        <Box className={isDarkMode ? 'dark-sidebar-container' : 'sidebar-container'}>
             {
                 miscCardsItems.map((card, index) => {
                     return (
-                        <Card variant='outlined' key={index}className='misc-card'>
-                            <CardContent>
+                        <Card variant='outlined' key={index}>
+                            <CardContent className={isDarkMode ? 'dark-misc-card' : 'misc-card'}>
                                 <Typography variant='h5' component={'div'} >{card.title}</Typography>
                                 <Typography variant='body1' component={'p'}>{card.sentence}</Typography>
                                 <Typography variant='body1' component={'p'}>{card.paragraph}</Typography>
                                 <br />
-                                <Button 
-                                    style={{
-                                        outline: '1px solid black', 
-                                        color: 'black',
-                                        backgroundColor: theme.palette.primary.main,
-                                        outlineColor: theme.palette.primary.main
-                                    }}
-                                >
+                                <Button className={isDarkMode ? 'dark-sidebar-button' : 'sidebar-button'}>
                                     Continue
                                 </Button>
                             </CardContent>

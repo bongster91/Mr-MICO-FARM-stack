@@ -10,9 +10,12 @@ import { calculateTotal } from '../Helper/calculateTotals';
 import PortfolioHeader from './PortfolioHeader';
 import PortfolioAssets from './PortfolioAssets';
 import PortfolioDebts from './PortfolioDebts';
+import useDarkTheme from '../DarkModeTheme';
+import './styles.css';
 
 function Portfolio() {
     const { assets, debts } = useContext(PortfolioContext);
+    const { isDarkMode } = useDarkTheme();
     const { bank_accounts, investments, properties } = assets;
     const { bills, loans, credits, expenses } = debts;
 
@@ -25,7 +28,7 @@ function Portfolio() {
     ), [bills, loans, credits, expenses]);
 
     return (
-            <Box className='portfolio-container' sx={{gridColumn: '2/3'}}>
+            <Box className={isDarkMode ? 'dark-portfolio-container' : 'portfolio-container'}>
                 <PortfolioHeader 
                     totalAssetsAmount={totalAssetsAmount}
                     totalDebtsAmount={totalDebtsAmount}

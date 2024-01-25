@@ -1,6 +1,7 @@
 import React, { useState, useContext, MouseEvent } from 'react';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import IconButton from '@mui/material/IconButton';
 
 import NavSurface from './NavSurface';
 import NavMenu from './NavMenu';
@@ -31,7 +32,7 @@ const NavBar = () => {
                     );
                 })
             }
-            {
+            {   
                 isDarkMode ?
                 <LightModeIcon onClick={changeDarkMode} />
                 : <DarkModeIcon  onClick={changeDarkMode}/>

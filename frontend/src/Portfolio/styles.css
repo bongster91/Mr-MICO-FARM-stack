@@ -1,44 +1,43 @@
-.misc-card {
-    height: '200px';
-    color: #000000;
-}
-
-.dark-misc-card {
-    background-color: #183D3D;
-    color: #F7D58C;
-    border: 1px solid #F7D58C;
-}
-
-.misc-tab {
+.portfolio-container {
     grid-column: 2/3;
-    border: 1px solid #4297ff;
-}
-
-.dark-misc-tab {
-    grid-column: 2/3;
-    background-color: #183D3D;
-    color: #F7D58C;
-    border: 1px solid #F7D58C;
-}
-
-.sidebar-container {
-    color: #000000;
-    border: 1px solid #4297ff;
-}
-
-.dark-sidebar-container {
-    background-color: #183D3D;
-    color: #F7D58C;
-    border: 1px solid #F7D58C;
-}
-
-.sidebar-button {
     background-color: #4297ff;
+    color: #F7D58C
+}
+
+.dark-portfolio-container {
+    grid-column: 2/3;
+    background-color: #183D3D;
+    color: #F7D58C;
+}
+
+.portfolio-header {
     color: #000000;
     border: 1px solid #4297ff;
 }
 
-.dark-sidebar-button {
+.dark-portfolio-header {
+    background-color: #183D3D;
+    color: #F7D58C;
+    border: 1px solid #F7D58C;
+}
+
+.portfolio-assets-container {
+    color: #000000;
+    border: 1px solid #4297ff;
+}
+
+.dark-portfolio-assets-container {
+    background-color: #183D3D;
+    color: #F7D58C;
+    border: 1px solid #F7D58C;
+}
+
+.portfolio-debts-container {
+    color: #000000;
+    border: 1px solid #4297ff;
+}
+
+.dark-portfolio-debts-container {
     background-color: #183D3D;
     color: #F7D58C;
     border: 1px solid #F7D58C;

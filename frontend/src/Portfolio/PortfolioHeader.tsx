@@ -8,12 +8,14 @@ import Typography from '@mui/material/Typography';
 
 import { insertCommas } from '../Helper/insertCommas';
 import { PortfolioHeaderProps } from './types';
+import useDarkTheme from '../DarkModeTheme';
 
 function PortfolioHeader({totalAssetsAmount, totalDebtsAmount}: PortfolioHeaderProps) {
+    const { isDarkMode } = useDarkTheme();
     
     return (
-        <Card className='portfolio-header'>
-            <CardContent>
+        <Card>
+            <CardContent className={isDarkMode ? 'dark-portfolio-header' : 'portfolio-header'}>
                 <Typography component={'h1'} variant='h4'>Portfolio</Typography>
                 <Typography component={'h2'} variant='h5'>
                         Net Worth: ${insertCommas(totalAssetsAmount - totalDebtsAmount)}

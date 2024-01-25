@@ -61,7 +61,6 @@ function App() {
 
     const changeDarkMode = () => {
         setIsDarkMode(!isDarkMode);
-        console.log(isDarkMode)
     };
 
     return (

@@ -11,6 +11,8 @@ import { useTheme, Box } from '@mui/material';
 import { insertCommas } from '../Helper/insertCommas';
 import { calculateTotal } from '../Helper/calculateTotals';
 import { PortfolioAssetsProps } from './types';
+import useDarkTheme from '../DarkModeTheme';
+import './styles.css';
 
 ChartJS.register(
     ArcElement,
@@ -19,7 +21,7 @@ ChartJS.register(
 );
 
 function PortfolioAssets({totalAssetsAmount, assets}: PortfolioAssetsProps) {
-    const theme = useTheme();
+    const { isDarkMode } = useDarkTheme();
     const { bank_accounts, investments, properties } = assets;
     const data = {
         labels: [
@@ -51,21 +53,21 @@ function PortfolioAssets({totalAssetsAmount, assets}: PortfolioAssetsProps) {
     };
 
     return (
-        <Card className='portfolio-assets-container'>
-            <CardContent>
-                <Box style={{}}>
-                <Link to={'/assets'} style={{color: 'black', textDecoration: 'none'}}>
-                    <CardHeader
-                        title={`Assets`}
-                        subheader={`$${insertCommas(totalAssetsAmount)}`}
-                    />
-                </Link>
-                <div style={{width: '50%', height: '50%'}}>
-                    <Pie
-                        data={data}
-                        options={options} 
-                    />
-                </div>
+        <Card >
+            <CardContent className={ isDarkMode ? 'dark-portfolio-assets-container' : 'portfolio-assets-container' }>
+                <Box>
+                    <Link to={'/assets'} style={{color: 'black', textDecoration: 'none'}}>
+                        <CardHeader
+                            title={`Assets`}
+                            subheader={`$${insertCommas(totalAssetsAmount)}`}
+                        />
+                    </Link>
+                    <div style={{width: '50%', height: '50%'}}>
+                        <Pie
+                            data={data}
+                            options={options} 
+                        />
+                    </div>
                 </Box>
             </CardContent>
         </Card>

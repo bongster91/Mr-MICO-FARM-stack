@@ -11,6 +11,8 @@ import { useTheme } from '@mui/material';
 import { insertCommas } from '../Helper/insertCommas';
 import { calculateTotal } from '../Helper/calculateTotals';
 import { PortfolioAssetsProps, PortfolioDebtsProps } from './types';
+import useDarkTheme from '../DarkModeTheme';
+import './styles.css';
 
 ChartJS.register(
     ArcElement,
@@ -19,7 +21,7 @@ ChartJS.register(
 );
 
 function PortfolioDebts({ totalDebtsAmount,debts }: PortfolioDebtsProps) {
-    const theme = useTheme();
+    const { isDarkMode } = useDarkTheme();
     const { bills, loans, credits, expenses } = debts;
 
     const data = {
@@ -59,7 +61,7 @@ function PortfolioDebts({ totalDebtsAmount,debts }: PortfolioDebtsProps) {
 
     return (
         <Card>
-            <CardContent>
+            <CardContent className={isDarkMode ? 'dark-portfolio-debts-container' : 'portfolio-debts-container'}>
                 <Link to={'/debts'} style={{color: 'black', textDecoration: 'none'}}>
                     <CardHeader
                         title={`Debts`}

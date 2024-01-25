@@ -1,9 +1,10 @@
 .bottombar {
     background-color: #4297ff;
-    color: #F7D58C
+    color: #000000
 }
 
 .dark-bottombar {
     background-color: #183D3D;
     color: #F7D58C;
+    border: 1px solid #F7D58C;
 }
