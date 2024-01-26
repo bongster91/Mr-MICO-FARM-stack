@@ -1,12 +1,7 @@
 import React, {memo} from 'react';
 import TableBody from '@mui/material/TableBody';
 import TableRowComponent from './TableRow';
-
-type TableBodyComponentProp = {
-    rows: any;
-    type: string;
-    handleSuccessAlert: () => void;
-}
+import { TableBodyComponentProp } from './types';
 
 function TableBodyComponent({rows, type, handleSuccessAlert}: TableBodyComponentProp) {
     const accountNames = {

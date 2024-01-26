@@ -14,13 +14,14 @@ import TableCellComponent from './TableCell';
 import {insertCommas} from '../Helper/insertCommas';
 import { TableRowChildrenProps } from './types';
 import TableModal from './TableModal';
+import TableRowData from './TableRowData';
 
 function TableRowChildren({row, open, handleDelete, handleSuccessAlert}: TableRowChildrenProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formValues, setFormValues] = useState({});
 
     const handleModalOpen = (el:any) => {
-        setIsModalOpen(true);
+        setIsModalOpen(!isModalOpen);
         setFormValues(el);
     };
 
@@ -45,33 +46,11 @@ function TableRowChildren({row, open, handleDelete, handleSuccessAlert}: TableRo
                                         }
                                     </td>
                                 </tr>
-                                {
-                                    row?.map((el: any, index: number) => (
-                                        <TableRow key={index}>
-                                            <td style={{width: '60px', padding: 0, margin: 0, display: 'flex'}}>
-                                                <Button 
-                                                    onClick={() => handleModalOpen(el)}
-                                                    sx={{outline: '1px solid black', padding: 0, minWidth: '10px', p: '2px'}}
-                                                >
-                                                    <EditIcon />
-                                                </Button>
-                                                <Button 
-                                                    onClick={() => handleDelete(el)} 
-                                                    sx={{outline: '1px solid black', padding: 0, minWidth: '10px', p: '2px'}}
-                                                >
-                                                    <DeleteIcon />
-                                                </Button>
-                                            </td>
-                                            <td>
-
-                                            {/* <Checkbox value={el} onSubmit={handleDelete} /> */}
-                                            </td>
-                                            <TableCellComponent props={el.name} />
-                                            <TableCellComponent props={el.type} />
-                                            <TableCellComponent props={`$${insertCommas(el.amount)}`} />
-                                        </TableRow>
-                                    ))
-                                }
+                                <TableRowData
+                                    row={row}
+                                    handleModalOpen={handleModalOpen}
+                                    handleDelete={handleDelete}
+                                />
                             </TableBody>
 
                         </Table>

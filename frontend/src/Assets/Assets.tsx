@@ -27,7 +27,7 @@ function Assets() {
         setIsModalOpen(!isModalOpen);
     };
 
-    const handleSuccessAlert = (response: string) => { 
+    const handleSuccessAlert = (response: string): void => { 
         if (response === 'Success') {
             setSuccessAlert(true);
         } 

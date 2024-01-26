@@ -5,33 +5,30 @@ import Paper from '@mui/material/Paper';
 
 import TableHeadComponent from './TableHead';
 import TableBodyComponent from './TableBody';
-import { Asset } from '../Portfolio/types';
+import { TableComponentProps } from './types';
 
-
-function createData(asset: Asset) {
-    return asset;
-}
-
-function TableComponent({props, handleSuccessAlert}: any) {
-    const assetsProps = [
-        createData(props.bank_accounts),
-        createData(props.investments),
-        createData(props.properties)
-    ];
-    const debtsProps = [
-        createData(props.bills),
-        createData(props.loans),
-        createData(props.credits),
-        createData(props.expenses)
-    ];
+function TableComponent({props, handleSuccessAlert}: TableComponentProps) {
+    
+    let tableProps = 'bank_accounts' in props ? 
+        [
+            props.bank_accounts,
+            props.investments,
+            props.properties
+        ] :
+        [
+            props.bills,
+            props.loans,
+            props.credits,
+            props.expenses
+        ];
   
     return (
         <TableContainer component={Paper} >
             <Table aria-label="collapsible table">
                 <TableHeadComponent />
                 <TableBodyComponent 
-                    rows={props.assets_id ? assetsProps : debtsProps} 
-                    type={props.assets_id ? 'assets' : 'debts'}
+                    rows={tableProps} 
+                    type={'bank_accounts' in props ? 'assets' : 'debts'}
                     handleSuccessAlert={handleSuccessAlert}
                 />
             </Table>
