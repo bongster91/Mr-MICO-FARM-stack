@@ -34,3 +34,12 @@ export type TableRowDataProps = {
     handleModalOpen: (el: Asset | Debt) => void;
     handleDelete: (e: Asset | Debt) => void;
 }
+
+export type TableModalProps = {
+    props: {
+        name: string,
+        type: string,
+        amount: number
+    };
+    handleSuccessAlert: (response:string) => void;
+}

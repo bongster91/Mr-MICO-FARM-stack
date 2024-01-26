@@ -18,7 +18,11 @@ import TableRowData from './TableRowData';
 
 function TableRowChildren({row, open, handleDelete, handleSuccessAlert}: TableRowChildrenProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [formValues, setFormValues] = useState({});
+    const [formValues, setFormValues] = useState({
+        name: '',
+        type: '',
+        amount: 0
+    });
 
     const handleModalOpen = (el:any) => {
         setIsModalOpen(!isModalOpen);

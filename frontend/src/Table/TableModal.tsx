@@ -12,9 +12,10 @@ import Alert from '@mui/material/Alert';
 
 import { assetTypes, debtTypes } from '../Modal/types';
 import { handleRequest, findAccountType, findType, handlePutRequest } from '../Modal/ModalRequest';
+import { TableModalProps } from './types';
 
 
-function TableModal({props, handleSuccessAlert}: any){
+function TableModal({props, handleSuccessAlert}: TableModalProps){
     console.log('PROPS: ', props);
     const { name, amount, type } = props;
     const generalType = findType(props);
