@@ -13,10 +13,11 @@ import Alert from '@mui/material/Alert';
 import { assetTypes, debtTypes } from '../Modal/types';
 import { handleRequest, findAccountType, findType, handlePutRequest } from '../Modal/ModalRequest';
 import { TableModalProps } from './types';
+import useDarkTheme from '../DarkModeTheme';
 
 
 function TableModal({props, handleSuccessAlert}: TableModalProps){
-    console.log('PROPS: ', props);
+    const { isDarkMode } = useDarkTheme();
     const { name, amount, type } = props;
     const generalType = findType(props);
     const [isModalOpen, setIsModalOpen] = useState(true);
@@ -59,7 +60,7 @@ function TableModal({props, handleSuccessAlert}: TableModalProps){
 
     return (
         <Modal
-            className='modal'
+            className={isDarkMode ? 'dark-table-modal' : 'table-modal'}
             open={isModalOpen}
             onClose={handleModalOpen}
             closeAfterTransition
@@ -74,7 +75,7 @@ function TableModal({props, handleSuccessAlert}: TableModalProps){
             }}
         >
             <Box 
-                className='modal-form-box'
+                className={isDarkMode ? 'dark-table-modal-form' : 'table-modal-form'}
                 component={'form'} 
             >
                 <TextField

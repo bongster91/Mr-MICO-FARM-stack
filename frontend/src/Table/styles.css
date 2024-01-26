@@ -1,0 +1,20 @@
+.table-modal {
+   /* top: 50%;
+    left: 50%; */
+    width: 40%;
+    height: 30%;
+    background-color: white;
+    padding: 4;
+    /* transform: translate(-50%, -50%); */
+    outline: 1px solid black;
+    border-radius: 2%;
+}
+
+.table-modal-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: space-between;
+    justify-content: space-evenly;
+    align-items: center;
+}
