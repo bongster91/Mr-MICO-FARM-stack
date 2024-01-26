@@ -2,6 +2,7 @@ import React, {memo} from 'react';
 import TableBody from '@mui/material/TableBody';
 import TableRowComponent from './TableRow';
 import { TableBodyComponentProp } from './types';
+import { Asset, Debt } from '../Portfolio/types';
 
 function TableBodyComponent({rows, type, handleSuccessAlert}: TableBodyComponentProp) {
     const accountNames = {
@@ -23,7 +24,7 @@ function TableBodyComponent({rows, type, handleSuccessAlert}: TableBodyComponent
     return (
         <TableBody>
             {
-                rows.map((row: any, index: number) => (
+                rows.map((row: Asset[] | Debt[], index: number) => (
                     <TableRowComponent 
                         key={index}
                         row={row}

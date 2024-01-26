@@ -4,11 +4,10 @@ import TableRowChildren from './TableRowChildren';
 import { findId } from '../Helper/findId';
 import { assetTypes, debtTypes } from "../Modal/types";
 import { RequestMethod, fetchRequest } from "../Api/Fetch";
+import { TableRowComponentProps } from './types';
 
 
-
-
-function TableRowComponent({row, type, generalType, handleSuccessAlert}: any) {
+function TableRowComponent({row, type, generalType, handleSuccessAlert}: TableRowComponentProps) {
     const [open, setOpen] = useState(false);
    
     const findAccountType = (accountType: any) => {

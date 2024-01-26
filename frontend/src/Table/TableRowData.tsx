@@ -8,12 +8,14 @@ import Checkbox from '@mui/material/Checkbox';
 
 import TableCellComponent from './TableCell';
 import { insertCommas } from '../Helper/insertCommas';
+import { TableRowDataProps } from './types';
+import { Asset, Debt } from '../Portfolio/types';
 
-function TableRowData({ row, handleModalOpen, handleDelete }: any) {
+function TableRowData({ row, handleModalOpen, handleDelete }: TableRowDataProps) {
     return (
         <>
             {
-                row?.map((el: any, index: number) => (
+                row?.map((el: Asset | Debt, index: number) => (
                     <TableRow key={index}>
                         <td style={{width: '60px', padding: 0, margin: 0, display: 'flex'}}>
                             <Button 
